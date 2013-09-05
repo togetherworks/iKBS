@@ -1,0 +1,261 @@
+<pfw-mapping>
+
+    <map-class id="com.ncs.iframe.extensions.tagutil.codelookup.CodeTypeTO">
+        <db-table name="TBL_CODETYPE"/>
+        <field name="codeTypeId" type="java.lang.String">
+            <sql name="CODETYPE_ID" type="CHAR"/>
+        </field>
+        <field name="codeTypeDesc" type="java.lang.String">
+            <sql name="CODETYPE_DESC" type="CHAR"/>
+        </field>
+        <field name="codeTypeTable" type="java.lang.String">
+            <sql name="CODETYPE_TABLE" type="CHAR"/>
+        </field>
+        <field name="readOnly" type="java.lang.String">
+            <sql name="READ_ONLY" type="CHAR"/>
+        </field>
+        <field name="colCodeTypeId" type="java.lang.String">
+            <sql name="COL_CODETYPE_ID" type="CHAR"/>
+        </field>
+        <field name="colCodeId" type="java.lang.String">
+            <sql name="COL_CODE_ID" type="CHAR"/>
+        </field>
+        <field name="colCodeDesc" type="java.lang.String">
+            <sql name="COL_CODE_DESC" type="CHAR"/>
+        </field>
+        <field name="colCodeSeq" type="java.lang.String">
+            <sql name="COL_CODE_SEQ" type="CHAR"/>
+        </field>
+        <field name="colStatus" type="java.lang.String">
+            <sql name="COL_STATUS" type="CHAR"/>
+        </field>
+        <field name="colEffectiveDate" type="java.lang.String">
+            <sql name="COL_EFFECTIVE_DT" type="CHAR"/>
+        </field>
+        <field name="colExpiryDate" type="java.lang.String">
+            <sql name="COL_EXPIRY_DT" type="CHAR"/>
+        </field>
+        <field name="editUrl" type="java.lang.String">
+            <sql name="EDIT_URL" type="CHAR"/>
+        </field>
+        <field name="addUrl" type="java.lang.String">
+            <sql name="ADD_URL" type="CHAR"/>
+        </field>
+        <primary-key name="CODETYPE_ID"/>
+        <cache-enabled value="true"/>
+    </map-class>
+
+    <map-class id="com.ncs.iframe.extensions.menu.datasource.MenuDisplayerMappingTO">
+        <db-table name="TBL_MENU_DISPLAYER"/>
+        <field name="repositoryId" type="java.lang.String">
+            <sql name="REPOSITORY_ID" type="CHAR"/>
+        </field>
+        <field name="name" type="java.lang.String">
+            <sql name="NAME" type="CHAR"/>
+        </field>
+        <field name="type" type="java.lang.String">
+            <sql name="TYPE" type="CHAR"/>
+        </field>
+        <field name="config" type="java.lang.String">
+            <sql name="CONFIG" type="CHAR"/>
+        </field>
+        <primary-key name="REPOSITORY_ID"/>
+        <primary-key name="NAME"/>
+  <cache-enabled value="true"/>
+    </map-class>
+
+    <map-class id="com.ncs.iframe.extensions.menu.datasource.MenuTO">
+        <db-table name="TBL_MENU_ITEM"/>
+        <field name="repositoryId" type="java.lang.String">
+            <sql name="REPOSITORY_ID" type="CHAR"/>
+        </field>
+        <field name="itemId" type="java.lang.String">
+            <sql name="ITEM_ID" type="CHAR"/>
+        </field>
+ <field name="parentItemId" type="java.lang.String">
+            <sql name="PARENT_ITEM_ID" type="CHAR"/>
+        </field>
+ <field name="itemSeq" type="java.lang.Integer">
+            <sql name="ITEM_SEQ" type="INTEGER"/>
+        </field>
+        <field name="name" type="java.lang.String">
+            <sql name="NAME" type="CHAR"/>
+        </field>
+        <field name="title" type="java.lang.String">
+            <sql name="TITLE" type="CHAR"/>
+        </field>
+        <field name="location" type="java.lang.String">
+            <sql name="LOCATION" type="CHAR"/>
+        </field>
+        <field name="target" type="java.lang.String">
+            <sql name="TARGET" type="CHAR"/>
+        </field>
+        <field name="description" type="java.lang.String">
+            <sql name="DESCRIPTION" type="CHAR"/>
+        </field>
+        <field name="onClick" type="java.lang.String">
+            <sql name="ON_CLICK" type="CHAR"/>
+        </field>
+        <field name="onMouseOver" type="java.lang.String">
+            <sql name="ON_MOUSE_OVER" type="CHAR"/>
+        </field>
+        <field name="onMouseOut" type="java.lang.String">
+            <sql name="ON_MOUSE_OUT" type="CHAR"/>
+        </field>
+        <field name="image" type="java.lang.String">
+            <sql name="IMAGE" type="CHAR"/>
+        </field>
+        <field name="altImage" type="java.lang.String">
+            <sql name="ALT_IMAGE" type="CHAR"/>
+        </field>
+        <field name="toolTip" type="java.lang.String">
+            <sql name="TOOL_TIP" type="CHAR"/>
+        </field>
+        <field name="roles" type="java.lang.String">
+            <sql name="ROLES" type="CHAR"/>
+        </field>
+        <field name="page" type="java.lang.String">
+            <sql name="PAGE" type="CHAR"/>
+        </field>        
+        <field name="version" type="java.lang.Integer">
+            <sql name="VERSION" type="INTEGER"/>
+        </field>
+        <primary-key name="REPOSITORY_ID"/>
+        <primary-key name="ITEM_ID"/>
+        <version name="VERSION"/>
+  <cache-enabled value="true"/>
+    </map-class>
+
+    <!-- New PFW for profile administration -->
+
+    <!-- Start of param-map -->
+    <param-map id="/profile/getUserProfileParams">
+        <property name="subjectId" sqlType="CHAR"/>
+    </param-map>
+
+    <param-map id="/profile/getUsersProfileParams">
+        <property name="subjectsId" sqlType="CHAR"/>
+    </param-map>
+
+  <param-map id="/profile/getGroupProfileParams">
+        <property name="groupId" sqlType="CHAR"/>
+    </param-map>
+
+  <param-map id="/profile/getGroupsProfileParams">
+        <property name="groupsId" sqlType="CHAR"/>
+    </param-map>
+
+    <param-map id="/profile/getSysProfileIdParams">
+        <property name="sysProfileKey" sqlType="CHAR"/>
+    </param-map>
+
+    <param-map id="/menu/getProfileRepositoryParams">
+        <property name="profileId" sqlType="CHAR"/>
+    </param-map>
+
+
+    <!-- Start of result-map -->
+    <result-map id="/profile/getProfileResults" class="com.ncs.iframe.extensions.menu.datasource.ProfileTO">
+        <property field="PROFILE_ID" name="profileId" type="java.lang.String"/>
+        <property field="PROFILE_NAME" name="profileName" type="java.lang.String"/>
+    </result-map>
+
+    <result-map id="/profile/getSysProfileIdResults" class="com.ncs.iframe.extensions.menu.datasource.SysProfileKeyTO">
+        <property field="SYS_PROFILE_KEY" name="sysProfileKey" type="java.lang.String"/>
+        <property field="PROFILE_ID" name="profileId" type="java.lang.String"/>
+    </result-map>
+
+    <result-map id="/menu/getProfileRepositoryResults" class="com.ncs.iframe.extensions.menu.datasource.RepositoryTO">
+        <property field="REPOSITORY_ID" name="repositoryId" type="java.lang.String"/>
+    </result-map>
+
+
+    <!-- Start of map-sql -->
+    <map-sql id="/profile/getUserProfile"
+        type="query"
+        param-map="/profile/getUserProfileParams"
+        result-map="/profile/getProfileResults">
+        <![CDATA[
+        select TBL_PROFILE_ITEM.PROFILE_ID, TBL_PROFILE_ITEM.PROFILE_NAME
+          from TBL_PROFILE_SUBJECT2PROFILE, TBL_PROFILE_ITEM
+        where SUBJECT_ID = '#subjectId#'
+        and TBL_PROFILE_SUBJECT2PROFILE.PROFILE_ID = TBL_PROFILE_ITEM.PROFILE_ID
+        order by PROFILE_ORDER ASC
+        ]]>
+  <cache-group name="TBL_PROFILE_SUBJECT2PROFILE"/>
+  <cache-group name="TBL_PROFILE_ITEM"/>
+    </map-sql>
+
+    <map-sql id="/profile/getUsersProfile"
+        type="query"
+        param-map="/profile/getUsersProfileParams"
+        result-map="/profile/getProfileResults">
+        <![CDATA[
+        select TBL_PROFILE_ITEM.PROFILE_ID, TBL_PROFILE_ITEM.PROFILE_NAME
+          from TBL_PROFILE_SUBJECT2PROFILE, TBL_PROFILE_ITEM
+        where SUBJECT_ID in #subjectsId#
+        and TBL_PROFILE_SUBJECT2PROFILE.PROFILE_ID = TBL_PROFILE_ITEM.PROFILE_ID
+        order by PROFILE_ORDER ASC
+        ]]>
+  <cache-group name="TBL_PROFILE_SUBJECT2PROFILE"/>
+  <cache-group name="TBL_PROFILE_ITEM"/>
+    </map-sql>
+
+  <map-sql id="/profile/getGroupProfile"
+        type="query"
+        param-map="/profile/getGroupProfileParams"
+        result-map="/profile/getProfileResults">
+        <![CDATA[
+        select TBL_PROFILE_ITEM.PROFILE_ID, TBL_PROFILE_ITEM.PROFILE_NAME
+          from TBL_PROFILE_GROUP2PROFILE, TBL_PROFILE_ITEM
+        where GROUP_ID = '#groupId#'
+        and TBL_PROFILE_GROUP2PROFILE.PROFILE_ID = TBL_PROFILE_ITEM.PROFILE_ID
+        order by PROFILE_ORDER ASC
+        ]]>
+  <cache-group name="TBL_PROFILE_GROUP2PROFILE"/>
+  <cache-group name="TBL_PROFILE_ITEM"/>
+    </map-sql>
+
+  <map-sql id="/profile/getGroupsProfile"
+        type="query"
+        param-map="/profile/getGroupsProfileParams"
+        result-map="/profile/getProfileResults">
+        <![CDATA[
+        select TBL_PROFILE_ITEM.PROFILE_ID, TBL_PROFILE_ITEM.PROFILE_NAME
+          from TBL_PROFILE_GROUP2PROFILE, TBL_PROFILE_ITEM
+        where GROUP_ID in #groupsId#
+        and TBL_PROFILE_GROUP2PROFILE.PROFILE_ID = TBL_PROFILE_ITEM.PROFILE_ID
+        order by PROFILE_ORDER ASC
+        ]]>
+  <cache-group name="TBL_PROFILE_GROUP2PROFILE"/>
+  <cache-group name="TBL_PROFILE_ITEM"/>
+    </map-sql>
+
+  <map-sql id="/profile/getSysProfileId"
+        type="query"
+        param-map="/profile/getSysProfileIdParams"
+        result-map="/profile/getSysProfileIdResults">
+        <![CDATA[
+        select SYS_PROFILE_KEY, PROFILE_ID
+          from TBL_PROFILE_SYSPROFILE
+          where SYS_PROFILE_KEY='#sysProfileKey#'
+        ]]>
+  <cache-group name="TBL_PROFILE_SYSPROFILE"/>
+    </map-sql>
+
+    <map-sql id="/menu/getProfileRepository"
+        type="query"
+        param-map="/menu/getProfileRepositoryParams"
+        result-map="/menu/getProfileRepositoryResults">
+        <![CDATA[
+        select TBL_MENU_REPOSITORY.REPOSITORY_ID
+          from TBL_MENU_REPOSITORY, TBL_PROFILE_PROFILE2REPOSITORY
+        where TBL_PROFILE_PROFILE2REPOSITORY.REPOSITORY_ID = TBL_MENU_REPOSITORY.REPOSITORY_ID
+        and PROFILE_ID = '#profileId#'
+        order by TBL_PROFILE_PROFILE2REPOSITORY.REPO_ORDER ASC
+        ]]>
+  <cache-group name="TBL_MENU_REPOSITORY"/>
+  <cache-group name="TBL_PROFILE_PROFILE2REPOSITORY"/>
+    </map-sql>
+
+</pfw-mapping>

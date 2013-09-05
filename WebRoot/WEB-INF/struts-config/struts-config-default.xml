@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts 
+  Configuration 1.2//EN" 
+  "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+  <!-- ========== Form Bean Definitions =============================== -->
+  <!-- ========== Global Forward Definitions ========================== -->
+  <!-- ========== Action Mapping Definitions ========================== -->
+  <!-- ========== Controller Configuration ============================ -->
+  <!-- ========== Message Resources Definitions ======================= -->
+  <message-resources parameter="messages-default" />
+  <!-- ========== Plug Ins Configuration ============================== -->
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames" 
+      value="/WEB-INF/validation-rules/validator-rules.xml,/WEB-INF/validation-rules/validator-rules-iextend.xml,/WEB-INF/validation-rules/validation-kbs.xml" />
+  </plug-in>
+  <plug-in className="org.apache.struts.tiles.TilesPlugin">
+    <set-property property="definitions-config" 
+      value="/WEB-INF/tiles-def/tiles-defs-default.xml,/WEB-INF/tiles-def/tiles-defs-kbs.xml" 
+      />
+    <set-property property="definitions-debug" value="2" />
+    <set-property property="definitions-parser-details" value="2" />
+    <set-property property="definitions-parser-validate" value="true" />
+  </plug-in>
+  <plug-in className="com.ncs.iframe.base.ejb.command.action.CommandPlugIn">
+    <set-property property="config" 
+      value="/WEB-INF/command/command-config-default.xml" />
+    <set-property property="config/iextend" 
+      value="/WEB-INF/command/command-config-iextend.xml" />
+    <set-property property="config/kbs" 
+      value="/WEB-INF/command/command-config-kbs.xml" />
+  </plug-in>
+  <plug-in className="com.ncs.iframe.extensions.menu.MenuPlugIn">
+    <set-property property="menuConfig" 
+      value="/WEB-INF/menu-config/menu-config-default.xml"/>
+  </plug-in>
+  <plug-in className="com.ncs.iframe.base.eis.dao.pfw.DynaPFWPlugIn">
+    <set-property property="config" value="/WEB-INF/pfw/pfw-config.xml" />
+    <set-property property="config/kbs" 
+      value="/WEB-INF/pfw/pfw-config-kbs.xml" />
+  </plug-in>
+</struts-config>

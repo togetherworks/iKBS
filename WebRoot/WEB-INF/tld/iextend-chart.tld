@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 
+  1.2//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>chart</short-name>
+  <display-name>chart</display-name>
+  <description>Tag library to generate charts.</description>
+  <tag>
+    <name>define</name>
+    <tag-class> 
+      com.ncs.iframe.extensions.taglib.chart.DefineTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>Creates the definition for the chart.</description>
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Variable in the sessionContext that will be used
+        to store the chart image.</description>
+    </attribute>
+    <attribute>
+      <name>source</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Specifies source of the variable in the pageContext
+        that contains the data to be charted.</description>
+    </attribute>
+  </tag>
+  <tag>
+    <name>display</name>
+    <tag-class>com.ncs.iframe.extensions.taglib.chart.DisplayTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>Outputs the html that would generate the image html text.</description>
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Id of the chart.</description>
+    </attribute>
+    <attribute>
+      <name>type</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Type of chart to generate</description>
+    </attribute>
+    <attribute>
+      <name>width</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Width of the chart.</description>
+    </attribute>
+    <attribute>
+      <name>height</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Height of the chart.</description>
+    </attribute>
+    <attribute>
+      <name>action</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Action to retrieve the image</description>
+    </attribute>
+    <attribute>
+      <name>title</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Title of the chart</description>
+    </attribute>
+    <attribute>
+      <name>categoryLabel</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Label for category axis of chart (normally x-axis label)</description>
+    </attribute>
+    <attribute>
+      <name>seriesLabel</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Label for series axis of chart (normally y-axis label)</description>
+    </attribute>
+    <attribute>
+      <name>orientation</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Indicates whether chart is vertical or horizontal</description>
+    </attribute>
+    <attribute>
+      <name>legend</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Indicates whether legends should be displayed</description>
+    </attribute>
+    <attribute>
+      <name>tooltips</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Indicates whether tooltips should be generated</description>
+    </attribute>
+    <attribute>
+      <name>urls</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Indicates whether urls should be generated</description>
+    </attribute>
+    <attribute>
+      <name>storage</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Indicates the preferred storage mechanism for generated charts</description>
+    </attribute>
+  </tag>
+</taglib>

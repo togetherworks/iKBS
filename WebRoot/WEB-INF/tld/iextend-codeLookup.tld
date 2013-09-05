@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 
+  1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>codeLookup</short-name>
+  <display-name>codeLookup</display-name>
+  <description>Tag library to enable the population of code lookups for 
+    drop-down lists, as well as retrieving the description of code 
+    id.</description>
+  <tag>
+    <name>collection</name>
+    <tag-class> 
+      com.ncs.iframe.extensions.taglib.codelookup.CollectionTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>Defines the collection that will be used for the code 
+      lookups.</description>
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Identifier of the pageContext variable to be 
+        created.</description>
+    </attribute>
+    <attribute>
+      <name>codeType</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Code type of the code lookup.</description>
+    </attribute>
+    <attribute>
+      <name>activeOnly</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>If set to true, will only retrieve active 
+        codes.</description>
+    </attribute>
+    <attribute>
+      <name>noCache</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>If set to true, will not retrieve from 
+        cache.</description>
+    </attribute>
+    <attribute>
+      <name>pfwId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>Specifies the PFW id to be used to retrieve the codes 
+        (by default would use the pfw-id specified in 
+        iframe-default.properties).</description>
+    </attribute>
+    <attribute>
+      <name>tableName</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Specifies the table name where the codes are to be 
+        retrieved (by default, this is configured in the TBL_CODETYPE 
+        database table).</description>
+    </attribute>
+    <attribute>
+      <name>colCodeId</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Specifies the database table column name of the code id 
+        (by default, this is configured in the TBL_CODETYPE database 
+        table).</description>
+    </attribute>
+    <attribute>
+      <name>colCodeDesc</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Specifies the database table column name of the code 
+        description (by default, this is configured in the TBL_CODETYPE 
+        database table).</description>
+    </attribute>
+    <attribute>
+      <name>dependsOn</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>prepend</name>
+    <tag-class> 
+      com.ncs.iframe.extensions.taglib.codelookup.PrependTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>Inserts a new code id and desc at the beginning of the 
+      drop-down list (useful for setting default options).</description>
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Identifier of the collection variable to be inserted 
+        into.</description>
+    </attribute>
+    <attribute>
+      <name>paramId</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Code id to be inserted.</description>
+    </attribute>
+    <attribute>
+      <name>paramDesc</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>Code description to be inserted.</description>
+    </attribute>
+  </tag>
+  <tag>
+    <name>getDesc</name>
+    <tag-class> 
+      com.ncs.iframe.extensions.taglib.codelookup.GetDescTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>Retrieve the description of a code id of a specified code 
+      type.</description>
+    <attribute>
+      <name>codeType</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Code type</description>
+    </attribute>
+    <attribute>
+      <name>codeIdName</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Name of bean (if codeIdProperty is specified) or name of 
+        variable (if codeIdProperty is not specified).</description>
+    </attribute>
+    <attribute>
+      <name>codeIdProperty</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Property of the bean defined for codeIdName or the value 
+        of the code id (if codeIdName) is not specified.</description>
+    </attribute>
+    <attribute>
+      <name>defaultCodeId</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Default code id to use if not found in the code 
+        table.</description>
+    </attribute>
+  </tag>
+</taglib>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<MenuConfig>
+
+  <Displayers>
+    <Displayer name="SimpleMenu"
+               type="com.ncs.iframe.extensions.menu.displayer.SimpleMenuDisplayer"/>
+    <Displayer name="CoolMenu"
+               type="com.ncs.iframe.extensions.menu.displayer.CoolMenuDisplayer"/>
+  </Displayers>
+
+  <Menus name="default">
+    <!-- ====================   No Menu Available=========================== -->
+    <Menu  name="NoMenu"  title="No Menu Available"  description="No Menu Available"/>
+  </Menus>
+
+</MenuConfig>

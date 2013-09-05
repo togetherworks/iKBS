@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+  <!-- Example filter to set character encoding on each request -->
+  <filter>
+    <filter-name>Set Character Encoding</filter-name>
+    <filter-class>com.ncs.iframe.extensions.filter.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+
+  <filter>
+    <filter-name>Locale Filter</filter-name>
+    <filter-class>com.ncs.iframe.extensions.filter.LocaleFilter</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>Authenticate Filter</filter-name>
+    <filter-class>com.ncs.itrust.aa.AAFilter</filter-class>
+  </filter>
+
+  <!-- Define filter mappings for the defined filters -->
+  <filter-mapping>
+    <filter-name>Set Character Encoding</filter-name>
+    <servlet-name>action</servlet-name>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Locale Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- map all requests to the SecurityFilter( this include all subfolder as well)  -->
+  <filter-mapping>
+    <filter-name>Authenticate Filter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Authenticate Filter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+
+  <!-- Standard Action Servlet Configuration -->
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config/struts-config-default.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/kbs</param-name>
+      <param-value>/WEB-INF/struts-config/struts-config-kbs.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>3</param-value>
+    </init-param>
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>3</param-value>
+    </init-param>
+    <init-param>
+      <param-name>validating</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>jwsaction</servlet-name>
+    <servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>wsaction</servlet-name>
+    <servlet-class>com.ncs.iframe.extensions.ws.WebServiceServlet</servlet-class>
+  </servlet>
+
+  <!-- Standard Action Servlet Mapping -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>jwsaction</servlet-name>
+    <url-pattern>*.jws</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>jwsaction</servlet-name>
+    <url-pattern>*.ws</url-pattern>
+  </servlet-mapping>
+
+  <!-- make the session time-out after x minute  -->
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
+  <mime-mapping>
+    <extension>wsdl</extension>
+    <mime-type>text/xml</mime-type>
+  </mime-mapping>
+	<mime-mapping>
+<extension>mht</extension>
+<mime-type>message/rfc822</mime-type>
+</mime-mapping> 
+	<mime-mapping>
+    <extension>xls</extension>
+    <mime-type>application/excel</mime-type>
+  </mime-mapping>
+
+
+  <!-- Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/jsp/itrust/403_Error.jsp</location>
+  </error-page>
+
+  <!-- Tag Library Descriptors -->
+  <taglib>
+    <taglib-uri>/WEB-INF/tld/struts-tiles.tld</taglib-uri>
+    <taglib-location>/WEB-INF/tld/struts-tiles.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/WEB-INF/tld/iextend-pagination.tld</taglib-uri>
+    <taglib-location>/WEB-INF/tld/iextend-pagination.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/WEB-INF/tld/iextend-sortOrder.tld</taglib-uri>
+    <taglib-location>/WEB-INF/tld/iextend-sortOrder.tld</taglib-location>
+  </taglib>
+
+</web-app>

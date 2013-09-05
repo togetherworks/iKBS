@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts 
+  Configuration 1.2//EN" 
+  "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+  
+  <!-- ========== Form Bean Definitions =============================== -->
+  <form-beans type="org.apache.struts.action.ActionFormBean">
+  </form-beans>
+  
+  
+  <!-- ========== Global Forward Definitions ========================== -->
+  
+  
+  <!-- ========== Action Mapping Definitions ===========================-->
+  <action-mappings type="org.apache.struts.action.ActionMapping">
+    <action path="/index" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      scope="request" 
+      parameter="forwardSuccess=true">
+      <forward name="success" path=".kbs.index" />
+    </action>
+    <action path="/startPage" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.startPage" />
+    </action>
+    <action path="/applicationList" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.applicationList" />
+    </action>
+    <action path="/solutionList" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.solutionList" />
+    </action>
+    <action path="/rrList" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.rrList" />
+    </action>
+    <action path="/applicationDetails" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.applicationDetails" />
+    </action>
+    <action path="/loggingCallDetails" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.loggingCallDetails" />
+    </action>
+     <action path="/loggingCallDetailsLtd" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.loggingCallDetailsLtd" />
+    </action>
+    <action path="/knownErrorDetails" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.knownErrorDetails" />
+    </action>
+     <action path="/knownErrorDetailsLtd" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.knownErrorDetailsLtd" />
+    </action>
+    <action path="/commandCentreDetails" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.commandCentreDetails" />
+    </action>
+     <action path="/commandCentreDetailsLtd" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.commandCentreDetailsLtd" />
+    </action>
+    <action path="/applicationDetailsLtd" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.applicationDetailsLtd" />
+    </action>
+    <action path="/applicationListLtd" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.applicationListLtd" />
+    </action>
+    <action path="/solutionDetails" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.solutionDetails" />
+    </action>
+    <action path="/rrDetails" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.rrDetails" />
+    </action>
+    <action path="/contentFrame" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.contentFrame" />
+    </action>
+    <action path="/mainHeader" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.mainHeader" />
+    </action>
+    <action path="/mainNavigation" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.mainNavigation" />
+    </action>
+    <action path="/applicationSearch" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.applicationSearch" />
+    </action>
+    <action path="/solutionSearch" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.solutionSearch" />
+    </action>
+    <action path="/rrSearch" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+      <forward name="success" path=".kbs.rrSearch" />
+    </action>
+    <action path="/appImage" 
+      type="com.ncs.ikbs.action.AppImageAction" 
+      parameter="forwardSuccess=true" 
+      scope="request">
+    </action>
+      
+    
+    <!-- Frame Forwarding pages actions -->
+    <action path="/FrameHeader" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" scope="request">
+      <forward name="success" path=".kbs.frameHeader" />
+    </action>
+    <action path="/FrameMenu" 
+      type="com.ncs.iframe.extensions.action.BaseFlowCommandAction" 
+      parameter="forwardSuccess=true" scope="request">
+      <forward name="success" path=".kbs.frameMenu" />
+    </action>
+  </action-mappings>
+  
+  
+  <!-- ========== Controller Configuration ================================ -->
+  
+  
+  <!-- ========== Message Resources Definitions =========================== -->
+  <message-resources parameter="messages-kbs" />
+  
+  
+  <!-- ========== Plug Ins Configuration ================================== -->
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames" 
+      value="/WEB-INF/validation-rules/validator-rules.xml,/WEB-INF/validation-rules/validator-rules-iextend.xml,/WEB-INF/validation-rules/validation-kbs.xml" />
+  </plug-in>
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" />
+  <plug-in className="com.ncs.iframe.extensions.menu.MenuPlugIn">
+    <set-property property="menuConfig" 
+      value="/WEB-INF/menu-config/menu-config-kbs.xml" />
+  </plug-in>
+</struts-config>

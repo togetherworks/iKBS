@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+    
+<!-- Definitions for Tiles documentation   -->
+
+<tiles-definitions>
+  
+  <!-- =======================================================  -->
+  <!--  Module master definition  									                    -->
+  <!-- =======================================================  -->
+
+  <!-- Main page layout used as a root for other pages defintion. 
+  -->
+  <definition name=".module.layout" path="">
+  </definition>
+
+  <!-- =======================================================  -->
+  <!--  Module page definition  						                        -->
+  <!-- =======================================================  -->
+
+</tiles-definitions>

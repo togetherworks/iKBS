@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 
+  1.2//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>pagination</short-name>
+  <display-name>pagination</display-name>
+  <description>Tag library to aid in the pagination display of result 
+    listing.</description>
+  <tag>
+    <name>collection</name>
+    <tag-class> 
+      com.ncs.iframe.extensions.taglib.pagination.CollectionTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>Specifies the collection to be used for pagination 
+      purposes.</description>
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Variable in the pageContext to be used for 
+        iteration.</description>
+    </attribute>
+    <attribute>
+      <name>tableId</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Table id (only for pages with more than one pagination 
+        element).</description>
+    </attribute>
+    <attribute>
+      <name>partialList</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Specifies whether the list of items is a complete or 
+        partial list of results.</description>
+    </attribute>
+    <attribute>
+      <name>matchCount</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Variable where the total number of matching records are 
+        found, used in conjunction with partial list.</description>
+    </attribute>
+    <attribute>
+      <name>pageSize</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Number of records to display per page.</description>
+    </attribute>
+  </tag>
+  <tag>
+    <name>display</name>
+    <tag-class>com.ncs.iframe.extensions.taglib.pagination.DisplayTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>Displays information related to pagination.</description>
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Type of the information to be displayed.</description>
+    </attribute>
+    <attribute>
+      <name>tableId</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Table id (for multiple pagination element within a 
+        single page).</description>
+    </attribute>
+  </tag>
+  <tag>
+    <name>iterate</name>
+    <tag-class>com.ncs.iframe.extensions.taglib.pagination.IterateTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>Loop through each of the elements specified in the 
+      collections (normally for display purposes).</description>
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Id of the collection.</description>
+    </attribute>
+    <attribute>
+      <name>tableId</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Table id (for multiple pagination elements within a single page).</description>
+    </attribute>
+    <attribute>
+      <name>indexId</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>Variable that contains the element of the collection 
+        being processed currently.</description>
+    </attribute>
+  </tag>
+</taglib>

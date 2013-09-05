@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<MenuConfig>
+
+  <Displayers>
+    <Displayer name="ListMenu" type="com.ncs.iframe.extensions.menu.displayer.ListMenuDisplayer" />
+    <Displayer name="DropDownMenu" type="com.ncs.iframe.extensions.menu.displayer.DropDownMenuDisplayer" />
+    <Displayer name="CoolMenu" type="com.ncs.iframe.extensions.menu.displayer.CoolMenuDisplayer" />
+  </Displayers>
+
+  <Menus name="KBS-MENU">
+
+    <Menu name="KBS" title="title.kbs" description="KnowledgeBaseSystem">
+      <Item
+        name="Applications"
+        title="title.menu1"
+        location="/ikbs/kbs/applicationFrame.do"
+        target="msg_main" />
+      <Item
+        name="Solutions"
+        title="title.menu2"
+        location="/ikbs/kbs/solutionFrame.do"
+        target="msg_main" />
+    </Menu>
+
+  </Menus>
+
+</MenuConfig>

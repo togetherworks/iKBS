@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+<tiles-definitions>
+
+  <!-- =======================================================  -->
+  <!--  Master definition                                       -->
+  <!-- =======================================================  -->
+
+  <!-- Frame layout used as a root for other pages defintion.   -->
+  <definition name=".kbs.frameLayout" path="/jsp/tiles/layouts/Frame.jsp">
+    <put name="header" value="/kbs/FrameHeader.do" />
+    <put name="menu" value="/kbs/FrameMenu.do" />
+    <put name="msg_main" value="${msg_main}" />
+  </definition>
+
+  <!-- Main page layout used as a root for other pages defintion.-->
+  <definition name=".kbs.mainLayout" path="/jsp/tiles/layouts/Main.jsp">
+    <put name="title" value="title.mainTitle" />
+    <put name="messages" value="/jsp/tiles/common/Messages.jsp" />
+    <put name="main" value="/jsp/ikbs/contentFrame.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!--  Frame Forward SCD pages definition                      -->
+  <!-- =======================================================  -->
+
+  <definition name=".kbs.frameHeader" path="/jsp/tiles/common/Header.jsp" />
+
+  <definition name=".kbs.frameMenu" path="/jsp/tiles/common/MenuList.jsp" />
+
+  <definition name=".logout.page" path="/jsp/itrust/logout.jsp" />
+
+  <!-- =======================================================  -->
+  <!--  Content pages                                           -->
+  <!-- =======================================================  -->
+
+  <!-- for Portlet display -->
+  <definition name=".kbs.index" extends=".kbs.frameLayout">
+    <put name="msg_main" value="/kbs/contentFrame.do" />
+  </definition>
+
+  <definition name=".kbs.startPage" path="/jsp/ikbs/startPage.jsp" />
+  
+  <definition name=".kbs.applicationList" path="/jsp/ikbs/applicationList.jsp" />
+  
+  <definition name=".kbs.solutionList" path="/jsp/ikbs/solutionList.jsp" />
+  
+  <definition name=".kbs.rrList" path="/jsp/ikbs/rrList.jsp" />
+
+  <definition name=".kbs.applicationDetails" path="/jsp/ikbs/applicationDetails.jsp" />
+  
+  <definition name=".kbs.solutionDetails" path="/jsp/ikbs/solutionDetails.jsp" />
+  
+  <definition name=".kbs.rrDetails" path="/jsp/ikbs/rrDetails.jsp" />
+
+  <definition name=".kbs.contentFrame" path="/jsp/ikbs/contentFrame.jsp" />
+ 
+  <definition name=".kbs.mainHeader" path="/jsp/ikbs/mainHeader.jsp" />
+  
+  <definition name=".kbs.mainNavigation" path="/jsp/ikbs/mainNavigation.jsp" />
+  
+  <definition name=".kbs.applicationSearch" path="/jsp/ikbs/applicationSearch.jsp" />
+  
+  <definition name=".kbs.solutionSearch" path="/jsp/ikbs/solutionSearch.jsp" />
+  
+  <definition name=".kbs.rrSearch" path="/jsp/ikbs/rrSearch.jsp" />
+  
+  <definition name=".kbs.applicationDetailsLtd" path="/jsp/ikbs/applicationDetailsLtd.jsp" />
+  
+  <definition name=".kbs.applicationListLtd" path="/jsp/ikbs/applicationListLtd.jsp" />
+  
+  
+  <definition name=".kbs.loggingCallDetailsLtd" path="/jsp/ikbs/loggingCallDetailsLtd.jsp" />
+  
+  <definition name=".kbs.loggingCallDetails" path="/jsp/ikbs/loggingCallDetails.jsp" />
+  
+  <definition name=".kbs.knownErrorDetailsLtd" path="/jsp/ikbs/knownErrorDetailsLtd.jsp" />
+  
+  <definition name=".kbs.knownErrorDetails" path="/jsp/ikbs/knownErrorDetails.jsp" />
+  
+  <definition name=".kbs.commandCentreDetailsLtd" path="/jsp/ikbs/commandCentreDetailsLtd.jsp" />
+  
+  <definition name=".kbs.commandCentreDetails" path="/jsp/ikbs/commandCentreDetails.jsp" />
+  
+  
+</tiles-definitions>

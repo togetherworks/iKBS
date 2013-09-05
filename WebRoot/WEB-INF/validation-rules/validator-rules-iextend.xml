@@ -1,0 +1,311 @@
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
+<!--
+
+   This file contains the default Struts Validator pluggable validator
+   definitions.  It should be placed somewhere under /WEB-INF and
+   referenced in the struts-config.xml under the plug-in element
+   for the ValidatorPlugIn.
+
+      <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+                                                  /WEB-INF/validation.xml"/>
+      </plug-in>
+
+   These are the default error messages associated with
+   each validator defined in this file.  They should be
+   added to your projects ApplicationResources.properties
+   file or you can associate new ones by modifying the
+   pluggable validators msg attributes in this file.
+
+   # Struts Validator Error Messages
+   errors.required={0} is required.
+   errors.minlength={0} can not be less than {1} characters.
+   errors.maxlength={0} can not be greater than {1} characters.
+   errors.invalid={0} is invalid.
+
+   errors.byte={0} must be a byte.
+   errors.short={0} must be a short.
+   errors.integer={0} must be an integer.
+   errors.long={0} must be a long.
+   errors.float={0} must be a float.
+   errors.double={0} must be a double.
+
+   errors.date={0} is not a date.
+   errors.range={0} is not in the range {1} through {2}.
+   errors.creditcard={0} is an invalid credit card number.
+   errors.email={0} is an invalid e-mail address.
+
+-->
+
+<form-validation>
+
+   <global>
+
+      <validator name="checkboxRequired"
+            classname="com.ncs.iframe.extensions.validator.CheckboxValidator"
+               method="validateCheckboxRequired"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionErrors,
+                       javax.servlet.http.HttpServletRequest"
+                  msg="errors.checkbox.required">
+
+         <javascript><![CDATA[
+            function validateCheckboxRequired(form) {
+              var isValid=false;
+              var field;
+              var iCount = 0;
+
+              oCheckboxRequired = new checkboxRequired();
+              for (x in oCheckboxRequired) 
+              {
+                field = form[oCheckboxRequired[x][0]];
+				if ( field == null )
+				{
+					alert ( oCheckboxRequired[x][1] + "\n" );
+					return false;
+				}
+                iCount = field.length;
+                if ( iCount > 1 )
+                {
+                  for ( var i = 0; i < iCount; i++ )
+                  {
+				    if ( field[i] != null)
+					{
+	                    if ( field[i].checked )
+	                    {
+	                      isValid = true;
+	                      break;
+	                    }
+					}
+                  }
+                }
+                else if ( iCount == null || iCount == 0 )
+                {
+                  if ( field.checked )
+                  {
+                    isValid = true;
+                  }
+                }
+              }
+              if ( !isValid )
+              {
+                alert ( oCheckboxRequired[x][1] + "\n" );
+              }
+              return isValid;
+            }
+            
+            ]]>
+         </javascript>
+
+      </validator>
+
+      <validator name="radioButtonRequired"
+            classname="com.ncs.iframe.extensions.validator.RadioButtonValidator"
+               method="validateRadioButtonRequired"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionErrors,
+                       javax.servlet.http.HttpServletRequest"
+                  msg="errors.radio.button.required">
+
+         <javascript><![CDATA[
+            function validateRadioButtonRequired(form) {
+              var isValid=false;
+              var field;
+              var iCount = 0;
+
+              oRadioButtonRequired = new radioButtonRequired();
+              for (x in oRadioButtonRequired) 
+              {
+                field = form[oRadioButtonRequired[x][0]];
+                iCount = field.length;
+                if ( iCount > 1 )
+                {
+                  for ( var i = 0; i < iCount; i++ )
+                  {
+                    if ( field[i].checked )
+                    {
+                      isValid = true;
+                      break;
+                    }
+                  }
+                }
+                else if ( iCount == null || iCount == 0 )
+                {
+                  if ( field.checked )
+                  {
+                    isValid = true;
+                  }
+                }
+              }
+              if ( !isValid )
+              {
+                alert ( oRadioButtonRequired[x][1] + "\n" );
+              }
+              return isValid;
+            }
+            
+            ]]>
+         </javascript>
+
+      </validator>
+
+      <validator name="fromToDate"
+            classname="com.ncs.iframe.extensions.validator.FromToDateValidator"
+               method="validateFromToDate"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionErrors,
+                       javax.servlet.http.HttpServletRequest"
+                  msg="errors.from.later.than.to.date">
+
+          <javascript><![CDATA[
+            function validateFromToDate(form) 
+            {
+              var isValid = false;
+              var abResult = new Array();
+              var focusField = null;
+              var i = 0;
+              var iLoop = 0;
+              var fields = new Array();
+              oFromToDate = new fromToDate();
+              for ( x in oFromToDate ) 
+              {
+                var field = form[oFromToDate[x][0]];
+                var value = field.value;
+                var sFromDateField = oFromToDate[x][2]("fromDate");
+                var bAllowsSameDay = oFromToDate[x][2]("allowsSameDay");
+                var sFromDate = form.elements[sFromDateField].value;
+                
+                if ( sFromDate == null || value == null || sFromDate == "" || value == "" )
+                {
+                  continue;
+                }
+                if ( i == 0 )
+                {                       
+                  focusField = field;
+                }
+                var sFromToken = sFromDate.substring(6,10) 
+                    + sFromDate.substring(3,5) + sFromDate.substring(0,2);
+                var sToToken = value.substring(6,10) + value.substring(3,5) 
+                    + value.substring(0,2);
+
+		        if ( bAllowsSameDay == null || bAllowsSameDay == "true" ) 
+                {
+					if ( parseInt(sFromToken) <= parseInt(sToToken) )
+					{
+						isValid = true;
+					}
+					else
+					{
+						fields[i++] = oFromToDate[x][1];
+					}
+                }
+				else 
+                {
+					if ( parseInt(sFromToken) < parseInt(sToToken) )
+					{
+						isValid = true;
+					}
+					else
+					{
+						fields[i++] = oFromToDate[x][1];
+					}
+				}
+                iLoop++;
+              }
+
+              if (fields.length > 0) 
+              {
+                focusField.focus();
+                alert(fields.join('\n'));
+                return false;
+              }
+              else
+              {
+                return true;
+              }
+            }
+            
+            ]]>
+         </javascript>
+      </validator>
+      
+      <validator name="twofields" 
+			    classname="com.ncs.iframe.extensions.validator.ValidateTwoFields"
+			    method="validateTwoFields" 
+			    methodParams="java.lang.Object,
+            			      org.apache.commons.validator.ValidatorAction,
+		        	          org.apache.commons.validator.Field,
+        		        	  org.apache.struts.action.ActionErrors,
+			                  javax.servlet.http.HttpServletRequest" 
+			   depends="required" msg="errors.twofields">
+			<javascript><![CDATA[
+		        function validateTwoFields(form) {
+        		    var bValid = true;
+		            var focusField = null;
+		            var i = 0;
+		            var fields = new Array();
+		            oTwoFields = new twofields();
+		            for (x in oTwoFields) {
+	                var field = form[oTwoFields[x][0]];
+	                var secondField = form[oTwoFields[x][2]("secondProperty")];
+	            
+	                if (field.type == 'text' ||
+	                    field.type == 'textarea' ||
+	                    field.type == 'select-one' ||
+	                    field.type == 'radio' ||
+	                    field.type == 'password') {
+	            
+	                    var value;
+	                    var secondValue;
+	                    // get field's value
+	                    if (field.type == "select-one") {
+	                        var si = field.selectedIndex;
+	                        value = field.options[si].value;
+	                        secondValue = secondField.options[si].value;
+	                    } else {
+	                        value = field.value;
+	                        secondValue = secondField.value;
+	                    }
+                
+	                    if (value != secondValue) {
+	                    
+	                        if (i == 0) {
+	                            focusField = field;
+	                        }
+	                        fields[i++] = oTwoFields[x][1];
+	                        bValid = false;
+	                    }
+	                }
+	            }
+	            
+	            if (fields.length > 0) {
+	                focusField.focus();
+	                alert(fields.join('\n'));
+	            }
+	            
+	            return bValid;
+	        	}]]>
+	        </javascript>
+		</validator>
+		
+	<validator name="sgNricCheck" 
+	      classname="com.ncs.iframe.extensions.validator.SGNRICNumberValidator"
+			  method="validateSingaporeNRICNumber" 
+			  methodParams="java.lang.Object,
+            			    org.apache.commons.validator.ValidatorAction,
+		        	        org.apache.commons.validator.Field,
+        		        	org.apache.struts.action.ActionErrors,
+			                javax.servlet.http.HttpServletRequest" 
+			  msg="errors.sgnric">
+    </validator>
+   </global>
+
+</form-validation>

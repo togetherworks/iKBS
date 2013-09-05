@@ -1,0 +1,145 @@
+body
+{
+	MARGIN: 0px; 
+	BACKGROUND-COLOR: #ffffff
+}
+tr.layout
+{
+	VERTICAL-ALIGN: top
+}
+table.menu_category
+{
+	BORDER-TOP: #000000 5px solid; 
+	BORDER-BOTTOM: #777777 5px solid;
+	BORDER-LEFT: #000000 0px solid; 
+	BORDER-RIGHT: #000000 0px solid; 
+	MARGIN: 5px 5px 5px 5px; 
+	WIDTH: 130px
+}
+td.menu_category
+{
+	FONT-FAMILY: Arial, "MS Sans Serif";
+	FONT-SIZE: 11px; 
+	FONT-WEIGHT: bold; 
+	WIDTH: 150px; 
+	COLOR: #003300;
+	TEXT-TRANSFORM: uppercase 
+}
+a.menu_item
+{
+  FONT-FAMILY: Arial; 
+  FONT-SIZE: 14px; 
+  FONT-WEIGHT: bolder; 
+  COLOR: #33cc99
+}
+td.menu_item_spacing
+{
+  width: 5px
+}
+
+table.current_category
+{
+	BORDER-RIGHT: #000000 0px solid;
+	BORDER-TOP: #000000 0px solid; 
+	MARGIN: 5px 0px 5px 0px;
+	BORDER-LEFT: #000000 0px solid; 
+	WIDTH: 520px; 
+	BORDER-BOTTOM: #000000 0px solid
+}
+tr.current_category
+{
+	VERTICAL-ALIGN: bottom;
+	BACKGROUND-COLOR: #CCFF99; 
+	TEXT-ALIGN: left;
+}
+td.current_category 
+{
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: 18px; 
+	TEXT-TRANSFORM: uppercase; 
+	WIDTH: 520px; 
+	COLOR: #336633; 
+	FONT-FAMILY: Arial, "MS Sans Serif"
+}
+tr.search_header
+{
+	FONT-FAMILY: Arial, "MS Sans Serif";
+	FONT-SIZE: 13px; 
+	FONT-WEIGHT: bold; 
+	COLOR: #666633;
+	BACKGROUND-COLOR: #CCEE88; 
+}
+td.direct_nav
+{
+	FONT-FAMILY: Arial, "MS Sans Serif";
+	FONT-SIZE: 13px; 
+	FONT-WEIGHT: bold; 
+	COLOR: #003300;
+	TEXT-ALIGN: right;
+	VERTICAL-ALIGN: top;
+}
+
+.dropdown_list 
+{  
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 12px; 
+  font-weight: normal; 
+  color: #006699; 
+  border: 1px #666666 solid; 
+  text-indent: 3px
+}
+
+.message_display 
+{  
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 11px; 
+  font-weight: normal; 
+  color: #336699; 
+	BACKGROUND-COLOR: #F0F0F0; 
+  border: 1px #666666 solid; 
+  text-indent: 3px
+}
+
+label.mandatory
+{
+  COLOR: #dd0000;
+  FONT-WEIGHT: bold
+  FONT-SIZE; font-size: 10px; font-family: Arial, Helvetica, sans-serif: 14px
+}
+
+label.info
+{
+  COLOR: #0000dd;
+  FONT-WEIGHT: bold
+  FONT-SIZE: 14px
+}
+
+input.read_only
+{
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 12px; 
+  font-weight: normal; 
+  color: #666666; 
+	BACKGROUND-COLOR: #e7e7e7; 
+  border: 1px #666666 solid; 
+  text-indent: 3px
+}
+
+tr.USI
+{
+  COLOR: #0000ff;
+  FONT-FAMILY: verdana, helvetica, arial, sans-serif;
+  FONT-SIZE: 10px
+}
+
+.button {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #006699; border: 1px #0099CC inset; background-image: url(../images/lightblue_bg.jpg)}
+.header {  font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-style: italic; font-weight: bold; color: #006699; clip:    rect(   ); vertical-align: 5%}
+.bodytxt { font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #003377}
+.search_info {  font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #003399}
+.form_field {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #006699; border: 1px #666666 solid; text-indent: 3px}
+.underline {  line-height: 1px; color: #006699; background-color: #666666}
+.search_header {  font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #666666; background-color: #CDEFFC; text-indent: 3px}
+.table_row_odd {  font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #666666; text-indent: 3px}
+.table_row_even {  font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #666666; background-color: #F0F0F0; text-indent: 3px}
+.txt_link {  font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #336699; text-decoration: none; font-weight: bold}
+.buttontxt {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #006699; text-decoration: none}

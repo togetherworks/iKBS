@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pfw-config>
+  <database id="iconnect">
+    <!-- use either one-->
+    <!-- for BEA -->
+    <!-- <data-source jndi="iconnectDS" /> -->
+    <!-- for Tomcat -->
+    <data-source jndi="java:comp/env/jdbc/iconnectDS" />
+    <mapping href="/WEB-INF/pfw/pfw-mapping-kbs.xml" />
+    <mapping href="/WEB-INF/pfw/pfw-mapping-iextend.xml" />
+    <mapping href="/WEB-INF/pfw/pfw-itrust-aa-sql.xml" />
+  </database>
+
+</pfw-config>

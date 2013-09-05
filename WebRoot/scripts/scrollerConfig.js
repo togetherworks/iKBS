@@ -1,0 +1,43 @@
+var activityht=80;
+var display_no=2;
+var scrolltime=30;
+var pausetime=2000;
+var fastscroll=0;
+var innerht=activityht*display_no;
+var innerwt=520;
+var outerht=innerht;
+var outerwt=innerwt;
+var cellwt=180;
+var arrowcellwt=cellwt-outerwt;
+var cellpad=6;
+var textwt=innerwt-(cellpad*2);
+var divtexts = " style=\"position:absolute;visibility:hidden;width:"+textwt+";background:#FFFFFF; COLOR: #333333; left:0; top:0; FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 11pt; FONT-STYLE: normal; FONT-WEIGHT: normal; TEXT-DECORATION: none; margin:0px; overflow:hidden-x; LINE-HEIGHT: 14pt; text-align:left;padding:6px; cursor:'hand';\">";
+var titlefont= " style=\"position:relative;background: #FFFFFF; COLOR: #006666; width:"+textwt+"; FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 11pt; FONT-STYLE: normal; FONT-WEIGHT: bold; TEXT-DECORATION: none; LINE-HEIGHT: 11pt; text-align:left;padding:0px;\"";
+
+var outerlayer="<div id=\"spageie\" style=\"position:relative;background:#FFFFFF; width:"+outerwt+"; height:"+outerht+"; left:0; top:0; overflow:hidden;\">";
+var innerlayer="<div id=\"spagens\" style=\"position:relative;background:#FFFFFF; width:"+innerwt+"; height:"+innerht+"; left:0; top:0; overflow:hidden;\"></div></div>";
+
+var datea = new Array();
+var titlea= new Array();
+var linka = new Array();
+var trgfrma = new Array();
+var num=0;
+
+document.write("<td height=\""+outerht+"\" colspan=\"2\">");
+document.write("<table width=\""+cellwt+"\" height=\""+outerht+"\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#FFFFFF\" border=\"0\">");
+document.write("<tr>");
+document.write("<td width=\""+outerwt+"\" valign=\"top\" rowspan=\"2\">");
+document.write(outerlayer);
+document.write(innerlayer);
+document.write("</td>");
+document.write("<td width=\""+arrowcellwt+"\" height=\""+outerht/2+"\" valign=\"bottom\" align=\"center\">");
+document.write("<a href=\"javascript:;\" onMouseOver=\"ManualScroll('up')\" onMouseOut=\"CeaseScroll()\"><img src=\"/ikbs/images/Scroller/up_arrow.jpg\" width=\"10\" height=\"10\" border=\"0\"></a>");
+document.write("<br><br></td>");
+document.write("</tr>");
+document.write("<tr>");
+document.write("<td width=\""+arrowcellwt+"\" height=\""+outerht/2+"\" valign=\"top\" align=\"center\"><br>");
+document.write("<a href=\"javascript:;\" onMouseOver=\"ManualScroll('down')\" onMouseOut=\"CeaseScroll()\"><img src=\"/ikbs/images/Scroller/down_arrow.jpg\" width=\"10\" height=\"10\" border=\"0\"></a>");
+document.write("</td>");
+document.write("</tr>");
+document.write("</table>");
+document.write("</td>");

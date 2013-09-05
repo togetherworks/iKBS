@@ -1,0 +1,1312 @@
+<pfw-mapping>
+
+ <!-- Used by DatabaseVerifier.isResourceProtected -->
+ <param-map id="/iTrust-aa/isResourceProtected_Params">
+  <property name="sResourcePath" sqlType="CHAR" />
+  <property name="sResourceType" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/isResourceProtected_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="RESOURCES_ID" name="s_var1" type="java.lang.String" />
+  <property field="RESOURCE_PATH" name="s_var2" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/isResourceProtected_SQL"
+  type="query"
+  param-map="/iTrust-aa/isResourceProtected_Params"
+  result-map="/iTrust-aa/isResourceProtected_Result">
+  <![CDATA[
+   SELECT RESOURCES_ID, RESOURCE_PATH
+   FROM TBL_AA_RESOURCES
+   WHERE RESOURCE_PATH in (#sResourcePath#)
+   AND RESOURCE_TYPE = ##sResourceType##
+  ]]>
+  <groupname name="TBL_AA_RESOURCES"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getSubjectID -->
+ <param-map id="/iTrust-aa/getSubjectID_Params">
+  <property name="sloginName" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getSubjectID_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="SUBJECT_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getSubjectID_SQL"
+  type="query"
+  param-map="/iTrust-aa/getSubjectID_Params"
+  result-map="/iTrust-aa/getSubjectID_Result">
+  <![CDATA[
+   SELECT SUBJECT_ID
+   FROM TBL_AA_SUBJECT_LOGIN
+   WHERE LOGIN_NAME = ##sloginName##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getLoginNameBySubjectId -->
+ <param-map id="/iTrust-aa/getLoginNameBySubjectId_Params">
+  <property name="sSubjectId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getLoginNameBySubjectId_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="LOGIN_NAME" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getLoginNameBySubjectId_SQL"
+  type="query"
+  param-map="/iTrust-aa/getLoginNameBySubjectId_Params"
+  result-map="/iTrust-aa/getLoginNameBySubjectId_Result">
+  <![CDATA[
+   SELECT LOGIN_NAME
+   FROM TBL_AA_SUBJECT_LOGIN
+   WHERE SUBJECT_ID = ##sSubjectId##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.isLoginCorrect -->
+ <param-map id="/iTrust-aa/isLoginCorrect_Params">
+  <property name="sloginName" sqlType="CHAR" />
+  <property name="sPassword" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/isLoginCorrect_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="SUBJECT_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/isLoginCorrect_SQL"
+  type="query"
+  param-map="/iTrust-aa/isLoginCorrect_Params"
+  result-map="/iTrust-aa/isLoginCorrect_Result">
+  <![CDATA[
+   SELECT SUBJECT_ID
+   from TBL_AA_SUBJECT_LOGIN
+   where LOGIN_NAME = ##sloginName##
+   and PASSWORD = ##sPassword##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.isLoginCorrect -->
+ <param-map id="/iTrust-aa/updateSubjectLastLoginDate_Params">
+  <property name="oTimestamp" sqlType="TIMESTAMP" />
+  <property name="sloginName" sqlType="CHAR" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/updateSubjectLastLoginDate_SQL"
+  type="update"
+  param-map="/iTrust-aa/updateSubjectLastLoginDate_Params">
+ <![CDATA[
+          UPDATE TBL_AA_SUBJECT
+          SET LAST_LOGIN_DT = ##oTimestamp##
+          WHERE SUBJECT_ID = ##sloginName##
+      ]]>
+      <groupname name="TBL_AA_SUBJECT"/>
+ </map-sql>
+ 
+ <!-- Used by DatabaseVerifier.isLoginCorrect -->
+ <param-map id="/iTrust-aa/insertIntoLoginLog_Params">
+   <property name="sNewID" sqlType="CHAR" />
+   <property name="sloginName" sqlType="CHAR" />
+   <property name="sloginType" sqlType="CHAR" />
+   <property name="sloginStatus" sqlType="CHAR" />
+  <property name="oTimestamp" sqlType="TIMESTAMP" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/insertIntoLoginLog_SQL"
+  type="update"
+  param-map="/iTrust-aa/insertIntoLoginLog_Params">
+ <![CDATA[
+          Insert into
+          TBL_AA_LOGIN_LOG
+          (LOGIN_LOG_ID, LOGIN_ID, LOGIN_TYPE, LOGIN_STATUS, CREATED_DT)
+          values (
+          ##sNewID##,
+          ##sloginName##,
+          ##sloginType##,
+          ##sloginStatus##,
+          ##oTimestamp## )
+      ]]>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getGroupsOfSubjects -->
+ <param-map id="/iTrust-aa/getSubjectsGroups_Params">
+  <property name="sSubjectId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getSubjectsGroups_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="GROUP_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getSubjectsGroups_SQL"
+  type="query"
+  param-map="/iTrust-aa/getSubjectsGroups_Params"
+  result-map="/iTrust-aa/getSubjectsGroups_Result">
+  <![CDATA[
+   SELECT DISTINCT GROUP_ID
+   FROM TBL_AA_SUBJECT2GROUP
+   WHERE SUBJECT_ID IN (#sSubjectId#)
+  ]]>
+  <groupname name="TBL_AA_SUBJECT2GROUP"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getParentGroupID -->
+ <param-map id="/iTrust-aa/getParentGroupID_Params">
+  <property name="sGroupId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getParentGroupID_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="GROUP_PARENT_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getParentGroupID_SQL"
+  type="query"
+  param-map="/iTrust-aa/getParentGroupID_Params"
+  result-map="/iTrust-aa/getParentGroupID_Result">
+  <![CDATA[
+   SELECT GROUP_PARENT_ID
+   FROM TBL_AA_GROUP
+   WHERE GROUP_ID in (#sGroupId#)
+  ]]>
+  <groupname name="TBL_AA_GROUP"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getAllRolesOfSubject -->
+ <param-map id="/iTrust-aa/getAllRolesOfSubject_Params">
+  <property name="sQuerySubjectsId" sqlType="CHAR" />
+  <property name="sAllGroupsOfSubject" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getAllRolesOfSubject_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="ROLE_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getAllRolesOfSubject_SQL"
+  type="query"
+  param-map="/iTrust-aa/getAllRolesOfSubject_Params"
+  result-map="/iTrust-aa/getAllRolesOfSubject_Result">
+  <![CDATA[
+   SELECT DISTINCT ROLE_ID
+   FROM TBL_AA_SUBJECT2ROLE
+   WHERE SUBJECT_ID IN (#sQuerySubjectsId#)
+   UNION
+   SELECT DISTINCT ROLE_ID
+   FROM TBL_AA_GROUP2ROLE
+   WHERE GROUP_ID in (#sAllGroupsOfSubject#)
+  ]]>
+  <groupname name="TBL_AA_SUBJECT2ROLE"/>
+  <groupname name="TBL_AA_GROUP2ROLE"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getAllRolesOfSubject -->
+ <param-map id="/iTrust-aa/getSubjectRoles_Params">
+  <property name="sSubjectID" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getSubjectRoles_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="ROLE_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getSubjectRoles_SQL"
+  type="query"
+  param-map="/iTrust-aa/getSubjectRoles_Params"
+  result-map="/iTrust-aa/getSubjectRoles_Result">
+  <![CDATA[
+   SELECT DISTINCT ROLE_ID
+   FROM TBL_AA_SUBJECT2ROLE
+   WHERE SUBJECT_ID IN (#sSubjectID#)
+  ]]>
+  <groupname name="TBL_AA_SUBJECT2ROLE"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getDelegators -->
+ <param-map id="/iTrust-aa/getDelegators_Params">
+  <property name="sSubjectID" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getDelegators_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="DELEGATOR_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getDelegators_SQL"
+  type="query"
+  param-map="/iTrust-aa/getDelegators_Params"
+  result-map="/iTrust-aa/getDelegators_Result">
+  <![CDATA[
+   SELECT DISTINCT DELEGATOR_ID
+   FROM TBL_DA_SUBJECT2DELEGATOR
+   WHERE SUBJECT_ID = ##sSubjectID##
+  ]]>
+  <groupname name="TBL_DA_SUBJECT2DELEGATOR"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getImmediateAdministratorsLoginId -->
+ <param-map id="/iTrust-aa/getAdministratorsLoginIdOfGroups_Params">
+  <property name="sGroupId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getAdministratorsLoginIdOfGroups_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="LOGIN_NAME" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getAdministratorsLoginIdOfGroups_SQL"
+  type="query"
+  param-map="/iTrust-aa/getAdministratorsLoginIdOfGroups_Params"
+  result-map="/iTrust-aa/getAdministratorsLoginIdOfGroups_Result">
+  <![CDATA[
+   SELECT LOGIN_NAME
+   FROM TBL_AA_SUBJECT_LOGIN A,
+   TBL_DA_GROUP_ADMIN B
+   WHERE A.SUBJECT_ID = B.ADMIN_ID
+   AND B.GROUP_ID IN (#sGroupId#)
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+
+ <!-- Used by DatabaseVerifier.getResourcesId -->
+ <param-map id="/iTrust-aa/getResourcesId_Params">
+  <property name="sResourcesPath" sqlType="CHAR" />
+  <property name="sResourcesType" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getResourcesId_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="RESOURCES_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getResourcesId_SQL"
+  type="query"
+  param-map="/iTrust-aa/getResourcesId_Params"
+  result-map="/iTrust-aa/getResourcesId_Result">
+  <![CDATA[
+   SELECT RESOURCES_ID
+   FROM TBL_AA_RESOURCES
+   WHERE RESOURCE_PATH = ##sResourcesPath##
+   AND RESOURCE_TYPE = ##sResourcesType##
+  ]]>
+  <groupname name="TBL_AA_RESOURCES"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getPermissionsAssignedToResource -->
+ <param-map id="/iTrust-aa/getPermissionsAssignedToResource_Params">
+  <property name="sResourcesId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getPermissionsAssignedToResource_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="PERMISSION_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getPermissionsAssignedToResource_SQL"
+  type="query"
+  param-map="/iTrust-aa/getPermissionsAssignedToResource_Params"
+  result-map="/iTrust-aa/getPermissionsAssignedToResource_Result">
+  <![CDATA[
+   SELECT A.PERMISSION_ID
+   FROM TBL_AA_PERMISSION A,
+   TBL_AA_PERMISSION2RESOURCES B
+   WHERE A.PERMISSION_ID = B.PERMISSION_ID
+   AND B.RESOURCES_ID = ##sResourcesId##
+  ]]>
+  <groupname name="TBL_AA_PERMISSION"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getPermissionsAssignedToResource -->
+ <param-map id="/iTrust-aa/getRolesAssignedToPermissions_Params">
+  <property name="sPermissionIds" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getRolesAssignedToPermissions_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="ROLE_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getRolesAssignedToPermissions_SQL"
+  type="query"
+  param-map="/iTrust-aa/getRolesAssignedToPermissions_Params"
+  result-map="/iTrust-aa/getRolesAssignedToPermissions_Result">
+  <![CDATA[
+   SELECT A.ROLE_ID
+   FROM TBL_AA_ROLE A,
+   TBL_AA_ROLE2PERMISSION B
+   WHERE A.ROLE_ID = B.ROLE_ID
+   AND B.PERMISSION_ID IN (#sPermissionIds#)
+  ]]>
+  <groupname name="TBL_AA_ROLE"/>
+ </map-sql>
+
+
+ <!-- Used by DatabaseVerifier.getAdministeredGroupsOfSubject -->
+ <param-map id="/iTrust-aa/getAdministeredGroupsOfSubjects_Params">
+  <property name="sDelegators" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getAdministeredGroupsOfSubjects_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="GROUP_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getAdministeredGroupsOfSubjects_SQL"
+  type="query"
+  param-map="/iTrust-aa/getAdministeredGroupsOfSubjects_Params"
+  result-map="/iTrust-aa/getAdministeredGroupsOfSubjects_Result">
+  <![CDATA[
+   SELECT GROUP_ID
+   FROM TBL_DA_GROUP_ADMIN
+   WHERE ADMIN_ID IN (#sDelegators#)
+  ]]>
+  <groupname name="TBL_DA_GROUP_ADMIN"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getAdministeredGroupsOfSubject -->
+ <param-map id="/iTrust-aa/getChildrenOfGroups_Params">
+  <property name="sAdministeredGroupsId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getChildrenOfGroups_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="GROUP_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getChildrenOfGroups_SQL"
+  type="query"
+  param-map="/iTrust-aa/getChildrenOfGroups_Params"
+  result-map="/iTrust-aa/getChildrenOfGroups_Result">
+  <![CDATA[
+   SELECT GROUP_ID
+   FROM TBL_AA_GROUP
+   WHERE GROUP_PARENT_ID
+   IN (#sAdministeredGroupsId#)
+  ]]>
+  <groupname name="TBL_AA_GROUP"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getAdministeredGroupsOfSubject -->
+ <param-map id="/iTrust-aa/getGroupsIdAndName_Params">
+  <property name="sGroupId" sqlType="CHAR" />
+  <property name="sGroupName" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getGroupsIdAndName_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="GROUP_ID" name="s_var1" type="java.lang.String" />
+  <property field="GROUP_NAME" name="s_var2" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getGroupsIdAndName_SQL"
+  type="query"
+  param-map="/iTrust-aa/getGroupsIdAndName_Params"
+  result-map="/iTrust-aa/getGroupsIdAndName_Result">
+  <![CDATA[
+   SELECT GROUP_ID, GROUP_NAME
+   FROM TBL_AA_GROUP
+   WHERE 
+   <dynamic>
+    <isNotEmpty property="sGroupId">
+     GROUP_ID IN (#sGroupId#)
+    </isNotEmpty>
+    <isNotEmpty property="sGroupName">
+     GROUP_NAME IN (#sGroupName#)
+    </isNotEmpty>
+   </dynamic>
+  ]]>
+  <groupname name="TBL_AA_GROUP"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getAdministeredGroupsOfSubject -->
+ <param-map id="/iTrust-aa/getSimpleSubject_Params">
+  <property name="sSubjectId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getSimpleSubject_Result" class="com.ncs.itrust.aa.authz.SimpleCredential">
+  <property field="SUBJECT_ID" name="subjectId" type="java.lang.String" />
+  <property field="FIRST_NAME" name="firstName" type="java.lang.String" />
+  <property field="LAST_NAME" name="lastName" type="java.lang.String" />
+  <property field="EMAIL" name="email" type="java.lang.String" />
+  <property field="EFFECTIVE_DT" name="effectiveDate" type="java.sql.Timestamp" />
+  <property field="EXPIRY_DT" name="expiryDate" type="java.sql.Timestamp" />
+  <property field="STATUS" name="status" type="java.lang.String" />
+  <property field="LAST_LOGIN_DT" name="lastLoginDate" type="java.sql.Timestamp" />
+  <property field="CREATED_DT" name="createdDate" type="java.sql.Timestamp" />
+  <property field="CREATED_BY" name="createdBy" type="java.lang.String" />
+  <property field="UPDATED_DT" name="updatedDate" type="java.sql.Timestamp" />
+  <property field="UPDATED_BY" name="updatedBy" type="java.lang.String" />
+  <property field="VERSION" name="version" type="java.lang.Integer" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getSimpleSubject_SQL"
+  type="query"
+  param-map="/iTrust-aa/getSimpleSubject_Params"
+  result-map="/iTrust-aa/getSimpleSubject_Result">
+  <![CDATA[
+   SELECT SUBJECT_ID, FIRST_NAME, LAST_NAME,
+   EMAIL, EFFECTIVE_DT, EXPIRY_DT,
+   STATUS, LAST_LOGIN_DT,CREATED_DT,
+   CREATED_BY, UPDATED_DT, UPDATED_BY,
+   VERSION
+   FROM TBL_AA_SUBJECT
+   WHERE SUBJECT_ID = ##sSubjectId##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getAdministeredGroupsOfSubject -->
+ <param-map id="/iTrust-aa/getAllRolesAssociatedWithThisResources_Params">
+  <property name="sSQL_URL_Path" sqlType="CHAR" />
+  <property name="sResourceType" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getAllRolesAssociatedWithThisResources_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="ROLE_ID" name="s_var1" type="java.lang.String" />
+  <property field="RESOURCE_PATH" name="s_var2" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getAllRolesAssociatedWithThisResources_SQL"
+  type="query"
+  param-map="/iTrust-aa/getAllRolesAssociatedWithThisResources_Params"
+  result-map="/iTrust-aa/getAllRolesAssociatedWithThisResources_Result">
+  <![CDATA[
+   SELECT TBL_AA_ROLE2PERMISSION.ROLE_ID, RESOURCE_PATH
+   FROM TBL_AA_ROLE2PERMISSION,
+   TBL_AA_PERMISSION2RESOURCES,
+   TBL_AA_RESOURCES
+   WHERE
+   TBL_AA_ROLE2PERMISSION.PERMISSION_ID = TBL_AA_PERMISSION2RESOURCES.PERMISSION_ID
+   AND
+   TBL_AA_PERMISSION2RESOURCES.RESOURCES_ID = TBL_AA_RESOURCES.RESOURCES_ID
+   AND
+   RESOURCE_PATH IN (#sSQL_URL_Path#)
+   AND RESOURCE_TYPE = '#sResourceType#'
+   GROUP BY RESOURCE_PATH,TBL_AA_ROLE2PERMISSION.ROLE_ID
+  ]]>
+  <groupname name="TBL_AA_ROLE2PERMISSION"/>
+  <groupname name="TBL_AA_PERMISSION2RESOURCES"/>
+  <groupname name="TBL_AA_RESOURCES"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.delOldJSessionRecord -->
+ <param-map id="/iTrust-aa/delOldJSessionRecord_Params">
+  <property name="sSubjectID" sqlType="CHAR" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/delOldJSessionRecord_SQL"
+  type="update"
+  param-map="/iTrust-aa/delOldJSessionRecord_Params">
+ <![CDATA[
+   Delete from
+   TBL_AA_USER_SESSION_INFO
+   where SUBJECT_ID = ##sSubjectID##
+      ]]>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.setJSessionInfoToDataStore -->
+ <param-map id="/iTrust-aa/addJSessionRecord_Params">
+  <property name="jSessionId" sqlType="CHAR" />
+  <property name="sUserId" sqlType="CHAR" />
+  <property name="sLoginId" sqlType="CHAR" />
+  <property name="sLoginType" sqlType="CHAR" />
+  <property name="sFirstName" sqlType="CHAR" />
+  <property name="sLastName" sqlType="CHAR" />
+  <property name="sRemoteAddress" sqlType="CHAR" />
+  <property name="sTimestamp" sqlType="TIMESTAMP" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/addJSessionRecord_SQL"
+  type="update"
+  param-map="/iTrust-aa/addJSessionRecord_Params">
+ <![CDATA[
+         Insert into
+         TBL_AA_USER_SESSION_INFO
+         (JSESSIONID,SUBJECT_ID,LOGIN_ID,
+         LOGIN_TYPE,FIRST_NAME,LAST_NAME,
+         IP_ADDRESS, UPDATED_DT)
+         values (
+         ##jSessionId##,
+         ##sUserId##,
+         ##sLoginId##,
+         ##sLoginType##,
+         ##sFirstName##,
+         ##sLastName##,
+         ##sRemoteAddress##,
+         ##sTimestamp## )
+      ]]>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getJSessionInfoFromDataStore -->
+ <param-map id="/iTrust-aa/getJSessionRecord_Params">
+  <property name="jSessionId" sqlType="CHAR" />
+  <property name="sIpAddress" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getJSessionRecord_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="SUBJECT_ID" name="s_var1" type="java.lang.String" />
+  <property field="LOGIN_ID" name="s_var2" type="java.lang.String" />
+  <property field="FIRST_NAME" name="s_var3" type="java.lang.String" />
+  <property field="LAST_NAME" name="s_var4" type="java.lang.String" />
+  <property field="LOGIN_TYPE" name="s_var5" type="java.lang.String" />
+  <property field="UPDATED_DT" name="d_var1" type="java.sql.Timestamp" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getJSessionRecord_SQL"
+  type="query"
+  param-map="/iTrust-aa/getJSessionRecord_Params"
+  result-map="/iTrust-aa/getJSessionRecord_Result">
+  <![CDATA[
+   Select SUBJECT_ID, LOGIN_ID,FIRST_NAME,
+    LAST_NAME, LOGIN_TYPE, UPDATED_DT
+   from TBL_AA_USER_SESSION_INFO
+   where JSESSIONID = ##jSessionId##
+   and IP_Address = ##sIpAddress##
+  ]]>
+ </map-sql>
+
+
+ <!-- Used by DatabaseVerifier.updateDBUserSessionInfoTimeStamp -->
+ <param-map id="/iTrust-aa/updateJSessionRecord_Params">
+  <property name="oTimestamp" sqlType="TIMESTAMP" />
+  <property name="sSubjectID" sqlType="CHAR" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/updateJSessionRecord_SQL"
+  type="update"
+  param-map="/iTrust-aa/updateJSessionRecord_Params">
+ <![CDATA[
+   update TBL_AA_USER_SESSION_INFO
+   set UPDATED_DT = ##oTimestamp##
+   where SUBJECT_ID = ##sSubjectID##
+      ]]>
+ </map-sql>
+
+
+ <!-- Used by DatabaseVerifier.adhereToConcurrentLoginConstraints -->
+ <param-map id="/iTrust-aa/getJsessionRecordViaSubjectID_Params">
+  <property name="sSubjectID" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getJsessionRecordViaSubjectID_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="UPDATED_DT" name="d_var1" type="java.sql.Timestamp" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getJsessionRecordViaSubjectID_SQL"
+  type="query"
+  param-map="/iTrust-aa/getJsessionRecordViaSubjectID_Params"
+  result-map="/iTrust-aa/getJsessionRecordViaSubjectID_Result">
+  <![CDATA[
+   Select UPDATED_DT
+   from TBL_AA_USER_SESSION_INFO
+    where SUBJECT_ID = ##sSubjectID##
+  ]]>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.disableUserAccount -->
+ <param-map id="/iTrust-aa/disableUserAccount_Params">
+  <property name="sSubjectID" sqlType="CHAR" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/disableUserAccount_SQL"
+  type="update"
+  param-map="/iTrust-aa/disableUserAccount_Params">
+ <![CDATA[
+   Update TBL_AA_SUBJECT
+   set STATUS = 'S'
+   where SUBJECT_ID = ##sSubjectID##
+      ]]>
+      <groupname name="TBL_AA_SUBJECT"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.disableUserAccount -->
+ <param-map id="/iTrust-aa/updateLoginLog1_Params">
+  <property name="sLoginName" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/updateLoginLog1_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="MAX_CREATED_DT" name="d_var1" type="java.sql.Timestamp" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/updateLoginLog1_SQL"
+  type="query"
+  param-map="/iTrust-aa/updateLoginLog1_Params"
+  result-map="/iTrust-aa/updateLoginLog1_Result">
+  <![CDATA[
+   select Max(CREATED_DT) AS MAX_CREATED_DT
+   from TBL_AA_LOGIN_LOG
+   where LOGIN_ID = ##sLoginName##
+  ]]>
+  <groupname name="TBL_AA_LOGIN_LOG"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.disableUserAccount -->
+ <param-map id="/iTrust-aa/updateLoginLog2_Params">
+  <property name="sLocked" sqlType="CHAR" />
+  <property name="sLoginName" sqlType="CHAR" />
+  <property name="oTimestamp" sqlType="TIMESTAMP" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/updateLoginLog2_SQL"
+  type="update"
+  param-map="/iTrust-aa/updateLoginLog2_Params">
+ <![CDATA[
+   UPDATE TBL_AA_LOGIN_LOG
+   SET LOGIN_STATUS = ##sLocked##
+   where LOGIN_ID = ##sLoginName##
+   AND CREATED_DT = ##oTimestamp##
+      ]]>
+      <groupname name="TBL_AA_LOGIN_LOG"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getChallengeQuestion -->
+ <param-map id="/iTrust-aa/SubjectLoginRecallQuestion_Params">
+  <property name="sLoginName" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/SubjectLoginRecallQuestion_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="RECALL_QUESTION" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/SubjectLoginRecallQuestion_SQL"
+  type="query"
+  param-map="/iTrust-aa/SubjectLoginRecallQuestion_Params"
+  result-map="/iTrust-aa/SubjectLoginRecallQuestion_Result">
+  <![CDATA[
+   Select RECALL_QUESTION
+   from TBL_AA_SUBJECT_LOGIN
+   where LOGIN_NAME = ##sLoginName##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getChallengeQuestion -->
+ <param-map id="/iTrust-aa/SubjectLoginRecallAns_Params">
+  <property name="sLoginName" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/SubjectLoginRecallAns_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="RECALL_ANS" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/SubjectLoginRecallAns_SQL"
+  type="query"
+  param-map="/iTrust-aa/SubjectLoginRecallAns_Params"
+  result-map="/iTrust-aa/SubjectLoginRecallAns_Result">
+  <![CDATA[
+   Select RECALL_ANS
+   from TBL_AA_SUBJECT_LOGIN
+   where LOGIN_NAME = ##sLoginName##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.changePassword -->
+ <param-map id="/iTrust-aa/CheckExistingOldPassword_Params">
+  <property name="sSubjectId" sqlType="CHAR" />
+  <property name="sNewPassword" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/CheckExistingOldPassword_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="OLD_PASSWORD_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/CheckExistingOldPassword_SQL"
+  type="query"
+  param-map="/iTrust-aa/CheckExistingOldPassword_Params"
+  result-map="/iTrust-aa/CheckExistingOldPassword_Result">
+  <![CDATA[
+   Select OLD_PASSWORD_ID
+   from TBL_AA_SUBJECT_PWD_HISTORY
+   WHERE SUBJECT_ID  = ##sSubjectId##
+   and OLD_PASSWORD = ##sNewPassword##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_PWD_HISTORY"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.changePassword -->
+ <param-map id="/iTrust-aa/getSubjectOldPassword_Params">
+  <property name="sSubjectId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getSubjectOldPassword_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="OLD_PASSWORD_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getSubjectOldPassword_SQL"
+  type="query"
+  param-map="/iTrust-aa/getSubjectOldPassword_Params"
+  result-map="/iTrust-aa/getSubjectOldPassword_Result">
+  <![CDATA[
+   SELECT OLD_PASSWORD_ID
+   FROM TBL_AA_SUBJECT_PWD_HISTORY
+   WHERE SUBJECT_ID  = ##sSubjectId##
+   order by CREATED_DT DESC
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_PWD_HISTORY"/>
+ </map-sql>
+
+
+ <!-- Used by DatabaseVerifier.changePassword -->
+ <param-map id="/iTrust-aa/DelSubjectOldPassword_Params">
+  <property name="sOldPasswordId" sqlType="CHAR" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/DelSubjectOldPassword_SQL"
+  type="update"
+  param-map="/iTrust-aa/DelSubjectOldPassword_Params">
+ <![CDATA[
+   DELETE FROM TBL_AA_SUBJECT_PWD_HISTORY
+   WHERE OLD_PASSWORD_ID  = ##sOldPasswordId##
+      ]]>
+      <groupname name="TBL_AA_SUBJECT_PWD_HISTORY"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.changePassword -->
+ <param-map id="/iTrust-aa/SubjectLoginPassword_Params">
+  <property name="sLoginName" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/SubjectLoginPassword_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="PASSWORD" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/SubjectLoginPassword_SQL"
+  type="query"
+  param-map="/iTrust-aa/SubjectLoginPassword_Params"
+  result-map="/iTrust-aa/SubjectLoginPassword_Result">
+  <![CDATA[
+   Select PASSWORD
+   from TBL_AA_SUBJECT_LOGIN
+   where LOGIN_NAME = ##sLoginName##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.changePassword -->
+ <param-map id="/iTrust-aa/InsertOldPassword_Params">
+  <property name="sOld_Password_Record_PK" sqlType="CHAR" />
+  <property name="sSubjectID" sqlType="CHAR" />
+  <property name="sOld_Password" sqlType="CHAR" />
+  <property name="oTimestamp" sqlType="TIMESTAMP" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/InsertOldPassword_SQL"
+  type="update"
+  param-map="/iTrust-aa/InsertOldPassword_Params">
+ <![CDATA[
+   INSERT INTO TBL_AA_SUBJECT_PWD_HISTORY
+   (OLD_PASSWORD_ID,SUBJECT_ID,OLD_PASSWORD, CREATED_DT )
+   VALUES (
+   ##sOld_Password_Record_PK##,
+   ##sSubjectID##,
+   ##sOld_Password##,
+   ##oTimestamp##)
+      ]]>
+      <groupname name="TBL_AA_SUBJECT_PWD_HISTORY"/>
+ </map-sql>
+
+
+ <!-- Used by DatabaseVerifier.changePassword -->
+ <param-map id="/iTrust-aa/ChangePassword_Params">
+  <property name="sNewPassword" sqlType="CHAR" />
+  <property name="oPASSWORD_CHANGED_DATE" sqlType="TIMESTAMP" />
+  <property name="UPDATED_DT" sqlType="TIMESTAMP" />
+  <property name="sUpdatedBY" sqlType="CHAR" />
+  <property name="sSubjectId" sqlType="CHAR" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/ChangePassword_SQL"
+  type="update"
+  param-map="/iTrust-aa/ChangePassword_Params">
+ <![CDATA[
+   UPDATE TBL_AA_SUBJECT_LOGIN
+   SET PASSWORD = ##sNewPassword## ,
+   PASSWORD_CHANGED_DATE = ##oPASSWORD_CHANGED_DATE##,
+   UPDATED_DT = ##UPDATED_DT##,
+   UPDATED_BY = ##sUpdatedBY##
+   WHERE SUBJECT_ID = ##sSubjectId##
+      ]]>
+      <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+
+
+ <!-- Used by DatabaseVerifier.isPasswordANewPassword -->
+ <param-map id="/iTrust-aa/PasswordChangedDate_Params">
+  <property name="sLoginName" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/PasswordChangedDate_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="PASSWORD_CHANGED_DATE" name="d_var1" type="java.sql.Timestamp" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/PasswordChangedDate_SQL"
+  type="query"
+  param-map="/iTrust-aa/PasswordChangedDate_Params"
+  result-map="/iTrust-aa/PasswordChangedDate_Result">
+  <![CDATA[
+   SELECT PASSWORD_CHANGED_DATE
+   FROM TBL_AA_SUBJECT_LOGIN
+   WHERE LOGIN_NAME = ##sLoginName##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+
+ <!-- Used by DatabaseVerifier.updateLoginAttemptsMade -->
+ <param-map id="/iTrust-aa/UpdateLoginAttemptsMade_Params">
+  <property name="iPasswordAttempts" sqlType="INTEGER" />
+  <property name="sLoginName" sqlType="CHAR" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/UpdateLoginAttemptsMade_SQL"
+  type="update"
+  param-map="/iTrust-aa/UpdateLoginAttemptsMade_Params">
+ <![CDATA[
+   UPDATE TBL_AA_SUBJECT_LOGIN
+   SET ATTEMPTS_MADE = ##iPasswordAttempts##
+   WHERE LOGIN_NAME = ##sLoginName##
+      ]]>
+      <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+ <!-- Used by DatabaseVerifier.getLoginAttemptsMade -->
+ <param-map id="/iTrust-aa/SubjectLoginAttemptsMade_Params">
+  <property name="sLoginName" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/SubjectLoginAttemptsMade_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="ATTEMPTS_MADE" name="i_var1" type="java.lang.Integer" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/SubjectLoginAttemptsMade_SQL"
+  type="query"
+  param-map="/iTrust-aa/SubjectLoginAttemptsMade_Params"
+  result-map="/iTrust-aa/SubjectLoginAttemptsMade_Result">
+  <![CDATA[
+   Select ATTEMPTS_MADE
+   from TBL_AA_SUBJECT_LOGIN
+   where LOGIN_NAME = ##sLoginName##
+  ]]>
+  <groupname name="TBL_AA_SUBJECT_LOGIN"/>
+ </map-sql>
+
+
+ <!-- Used by DatabaseVerifier.getRoleNamesBasedOnRoleIds -->
+ <param-map id="/iTrust-aa/getRoleNamesBasedOnRoleIds_Params">
+  <property name="sListOfRoleIds" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getRoleNamesBasedOnRoleIds_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="ROLE_NAME" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getRoleNamesBasedOnRoleIds_SQL"
+  type="query"
+  param-map="/iTrust-aa/getRoleNamesBasedOnRoleIds_Params"
+  result-map="/iTrust-aa/getRoleNamesBasedOnRoleIds_Result">
+  <![CDATA[
+   SELECT ROLE_NAME
+   FROM TBL_AA_ROLE
+  WHERE ROLE_ID IN (#sListOfRoleIds#)
+  ]]>
+  <groupname name="TBL_AA_ROLE"/>
+ </map-sql>
+
+ <!-- Used by DBWithLdapVerifier.getImmediateAdministratorsLoginId -->
+ <param-map id="/iTrust-aa/getAdministratorsLoginIdOfGroups_Part1_Params">
+  <property name="sGroupId" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getAdministratorsLoginIdOfGroups_Part1_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="ADMIN_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getAdministratorsLoginIdOfGroups_Part1_SQL"
+  type="query"
+  param-map="/iTrust-aa/getAdministratorsLoginIdOfGroups_Part1_Params"
+  result-map="/iTrust-aa/getAdministratorsLoginIdOfGroups_Part1_Result">
+  <![CDATA[
+   SELECT ADMIN_ID
+   FROM
+   TBL_DA_GROUP_ADMIN B
+   WHERE
+   B.GROUP_ID IN (#sGroupId#)
+  ]]>
+  <groupname name="TBL_DA_GROUP_ADMIN"/>
+ </map-sql>
+ 
+ <!-- Used by DatabaseVerifier.getAllSubjectsInThisGroupUsingGroupId -->
+ <param-map id="/iTrust-aa/getAllSubjectIdsInThisGroupUsingGroupId_Params">
+  <property name="sListOfGroupIds" sqlType="CHAR" />
+ </param-map>
+
+ <result-map id="/iTrust-aa/getAllSubjectIdsInThisGroupUsingGroupId_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+  <property field="SUBJECT_ID" name="s_var1" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/getAllSubjectIdsInThisGroupUsingGroupId"
+  type="query"
+  param-map="/iTrust-aa/getAllSubjectIdsInThisGroupUsingGroupId_Params"
+  result-map="/iTrust-aa/getAllSubjectIdsInThisGroupUsingGroupId_Result">
+  <![CDATA[
+   SELECT DISTINCT SUBJECT_ID
+   FROM TBL_AA_SUBJECT2GROUP
+   WHERE GROUP_ID IN (#sListOfGroupIds#)
+  ]]>
+  <groupname name="TBL_AA_SUBJECT2GROUP"/>
+ </map-sql>
+ 
+ 
+ 
+ <!-- This segment is meant for migration from iTrust1.x to 2.0 -->
+ <!-- /iTrust-aa/migrate/getAllRoles_SQL -->
+ <result-map id="/iTrust-aa/migrate/getAllRoles_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+   	<property field="ROLE_ID" name="s_var1" type="java.lang.String" />
+ 	<property field="ROLE_NAME" name="s_var2" type="java.lang.String" />
+ 	<property field="BELONG_TO" name="s_var3" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/getAllRoles_SQL"
+  type="query"
+  result-map="/iTrust-aa/migrate/getAllRoles_Result">
+  <![CDATA[
+   SELECT ROLE_ID, ROLE_NAME, BELONG_TO
+   FROM TBL_AA_ROLE
+  ]]>
+  <groupname name="TBL_AA_ROLE"/>
+ </map-sql>
+ 
+ <!-- /iTrust-aa/migrate/getAllPermissions_SQL -->
+ <result-map id="/iTrust-aa/migrate/getAllPermissions_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+   	<property field="PERMISSION_ID" name="s_var1" type="java.lang.String" />
+ 	<property field="PERMISSION_NAME" name="s_var2" type="java.lang.String" />
+ 	<property field="BELONG_TO" name="s_var3" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/getAllPermissions_SQL"
+  type="query"
+  result-map="/iTrust-aa/migrate/getAllPermissions_Result">
+  <![CDATA[
+   SELECT PERMISSION_ID, PERMISSION_NAME, BELONG_TO
+   FROM TBL_AA_PERMISSION
+  ]]>
+  <groupname name="TBL_AA_PERMISSION"/>
+ </map-sql> 
+ 
+ <!-- /iTrust-aa/migrate/getAllSubject2Role_SQL -->
+ <result-map id="/iTrust-aa/migrate/getAllSubject2Role_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+   	<property field="SUBJECT_ID" name="s_var1" type="java.lang.String" />
+ 	<property field="ROLE_ID" name="s_var2" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/getAllSubject2Role_SQL"
+  type="query"
+  result-map="/iTrust-aa/migrate/getAllSubject2Role_Result">
+  <![CDATA[
+   SELECT SUBJECT_ID, ROLE_ID
+   FROM TBL_AA_SUBJECT2ROLE
+  ]]>
+  <groupname name="TBL_AA_SUBJECT2ROLE"/>
+ </map-sql>
+ 
+ <!-- /iTrust-aa/migrate/getAllGroup2Role_SQL -->
+ <result-map id="/iTrust-aa/migrate/getAllGroup2Role_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+   	<property field="GROUP_ID" name="s_var1" type="java.lang.String" />
+ 	<property field="ROLE_ID" name="s_var2" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/getAllGroup2Role_SQL"
+  type="query"
+  result-map="/iTrust-aa/migrate/getAllGroup2Role_Result">
+  <![CDATA[
+   SELECT GROUP_ID, ROLE_ID
+   FROM TBL_AA_GROUP2ROLE
+  ]]>
+  <groupname name="TBL_AA_GROUP2ROLE"/>
+ </map-sql>
+ 
+ <!-- /iTrust-aa/migrate/getAllRole2Permission_SQL -->
+ <result-map id="/iTrust-aa/migrate/getAllRole2Permission_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+   	<property field="ROLE_ID" name="s_var1" type="java.lang.String" />
+ 	<property field="PERMISSION_ID" name="s_var2" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/getAllRole2Permission_SQL"
+  type="query"
+  result-map="/iTrust-aa/migrate/getAllRole2Permission_Result">
+  <![CDATA[
+   SELECT ROLE_ID, PERMISSION_ID
+   FROM TBL_AA_ROLE2PERMISSION
+  ]]>
+  <groupname name="TBL_AA_ROLE2PERMISSION"/>
+ </map-sql>
+ 
+ <!-- /iTrust-aa/migrate/getAllPermission2Res_SQL -->
+ <result-map id="/iTrust-aa/migrate/getAllPermission2Res_Result" class="com.ncs.itrust.aa.to.AATmpTO">
+   	<property field="PERMISSION_ID" name="s_var1" type="java.lang.String" />
+ 	<property field="RESOURCES_ID" name="s_var2" type="java.lang.String" />
+ </result-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/getAllPermission2Res_SQL"
+  type="query"
+  result-map="/iTrust-aa/migrate/getAllPermission2Res_Result">
+  <![CDATA[
+   SELECT PERMISSION_ID, RESOURCES_ID
+   FROM TBL_AA_PERMISSION2RESOURCES
+  ]]>
+  <groupname name="TBL_AA_PERMISSION2RESOURCES"/>
+ </map-sql>
+ 
+ <!-- /iTrust-aa/migrate/insertIntoResources_SQL -->
+ <param-map id="/iTrust-aa/migrate/insertIntoResources_Params">
+  <property name="sResourcesID" sqlType="CHAR" />
+  <property name="sResourceName" sqlType="CHAR" />
+  <property name="sResourcePath" sqlType="CHAR" />
+  <property name="sResourceType" sqlType="CHAR" />
+  <property name="oCreatedDt" sqlType="TIMESTAMP" />
+  <property name="sCreatedBy" sqlType="CHAR" />
+  <property name="oUpdatedDt" sqlType="TIMESTAMP" />
+  <property name="sUpdatedBy" sqlType="CHAR" />
+  <property name="iVersion" sqlType="INTEGER" />
+  <property name="sBelongTo" sqlType="CHAR" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/insertIntoResources_SQL"
+  type="update"
+  param-map="/iTrust-aa/migrate/insertIntoResources_Params">
+ <![CDATA[
+   INSERT INTO TBL_AA_RESOURCES 
+   (RESOURCES_ID,RESOURCE_NAME,RESOURCE_PATH, RESOURCE_TYPE,CREATED_DT,CREATED_BY, UPDATED_DT,UPDATED_BY,  VERSION, BELONG_TO)
+   VALUES (
+   ##sResourcesID##, ##sResourceName##, ##sResourcePath##,
+   ##sResourceType##, ##oCreatedDt##, ##sCreatedBy##,
+   ##oUpdatedDt##, ##sUpdatedBy##, ##iVersion##,
+   ##sBelongTo## )
+      ]]>
+   <groupname name="TBL_AA_RESOURCES"/>
+ </map-sql>
+ 
+ <!-- /iTrust-aa/migrate/insertIntoSubject2Res_SQL -->
+ <param-map id="/iTrust-aa/migrate/insertIntoSubject2Res_Params">
+  <property name="sSubjectID" sqlType="CHAR" />
+  <property name="sResourcesID" sqlType="CHAR" />
+  <property name="oCreatedDt" sqlType="TIMESTAMP" />
+  <property name="sCreatedBy" sqlType="CHAR" />
+  <property name="oUpdatedDt" sqlType="TIMESTAMP" />
+  <property name="sUpdatedBy" sqlType="CHAR" />
+  <property name="iVersion" sqlType="INTEGER" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/insertIntoSubject2Res_SQL"
+  type="update"
+  param-map="/iTrust-aa/migrate/insertIntoSubject2Res_Params">
+ <![CDATA[
+   INSERT INTO TBL_AA_SUBJECT2RES 
+   (SUBJECT_ID, RESOURCES_ID,CREATED_DT,CREATED_BY, UPDATED_DT,UPDATED_BY,  VERSION)
+   VALUES (
+   ##sSubjectID##, ##sResourcesID##, 
+   ##oCreatedDt##, ##sCreatedBy##,
+   ##oUpdatedDt##, ##sUpdatedBy##, 
+   ##iVersion## )
+      ]]>
+   <groupname name="TBL_AA_SUBJECT2RES"/>
+ </map-sql>
+ 
+ <!-- /iTrust-aa/migrate/insertIntoGroup2Res_SQL -->
+ <param-map id="/iTrust-aa/migrate/insertIntoGroup2Res_Params">
+  <property name="sGroupID" sqlType="CHAR" />
+  <property name="sResourcesID" sqlType="CHAR" />
+  <property name="oCreatedDt" sqlType="TIMESTAMP" />
+  <property name="sCreatedBy" sqlType="CHAR" />
+  <property name="oUpdatedDt" sqlType="TIMESTAMP" />
+  <property name="sUpdatedBy" sqlType="CHAR" />
+  <property name="iVersion" sqlType="INTEGER" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/insertIntoGroup2Res_SQL"
+  type="update"
+  param-map="/iTrust-aa/migrate/insertIntoGroup2Res_Params">
+ <![CDATA[
+   INSERT INTO TBL_AA_GROUP2RES 
+   (GROUP_ID, RESOURCES_ID,CREATED_DT,CREATED_BY, UPDATED_DT,UPDATED_BY,  VERSION)
+   VALUES (
+   ##sGroupID##, ##sResourcesID##, 
+   ##oCreatedDt##, ##sCreatedBy##,
+   ##oUpdatedDt##, ##sUpdatedBy##, 
+   ##iVersion## )
+      ]]>
+   <groupname name="TBL_AA_GROUP2RES"/>
+ </map-sql>
+ 
+ <!-- /iTrust-aa/migrate/insertIntoRes2Res_SQL -->
+ <param-map id="/iTrust-aa/migrate/insertIntoRes2Res_Params">
+  <property name="sResourcesID" sqlType="CHAR" />
+  <property name="sParentResID" sqlType="CHAR" />
+  <property name="oCreatedDt" sqlType="TIMESTAMP" />
+  <property name="sCreatedBy" sqlType="CHAR" />
+  <property name="oUpdatedDt" sqlType="TIMESTAMP" />
+  <property name="sUpdatedBy" sqlType="CHAR" />
+  <property name="iVersion" sqlType="INTEGER" />
+ </param-map>
+
+ <map-sql
+  id="/iTrust-aa/migrate/insertIntoRes2Res_SQL"
+  type="update"
+  param-map="/iTrust-aa/migrate/insertIntoRes2Res_Params">
+ <![CDATA[
+   INSERT INTO TBL_AA_RES2RES 
+   (RESOURCES_ID, PARENT_RES_ID,CREATED_DT,CREATED_BY, UPDATED_DT,UPDATED_BY,  VERSION)
+   VALUES (
+   ##sResourcesID##, ##sParentResID##, 
+   ##oCreatedDt##, ##sCreatedBy##,
+   ##oUpdatedDt##, ##sUpdatedBy##, 
+   ##iVersion## )
+      ]]>
+   <groupname name="TBL_AA_RES2RES"/>
+ </map-sql> 
+ 
+ <!-- Delete contents in old tables -->
+ <map-sql
+  id="/iTrust-aa/migrate/deleteAllFromPermission2Resources"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_PERMISSION2RESOURCES 
+      ]]>
+   <groupname name="TBL_AA_PERMISSION2RESOURCES"/>
+ </map-sql>  
+ <map-sql
+  id="/iTrust-aa/migrate/deleteAllFromRole2Permission"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_ROLE2PERMISSION 
+      ]]>
+   <groupname name="TBL_AA_ROLE2PERMISSION"/>
+ </map-sql> 
+ <map-sql
+  id="/iTrust-aa/migrate/deleteAllFromPermission"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_PERMISSION  
+      ]]>
+   <groupname name="TBL_AA_PERMISSION"/>
+ </map-sql> 
+ <map-sql
+  id="/iTrust-aa/migrate/deleteAllFromSubject2Role"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_SUBJECT2ROLE  
+      ]]>
+   <groupname name="TBL_AA_SUBJECT2ROLE"/>
+ </map-sql> 
+  <map-sql
+  id="/iTrust-aa/migrate/deleteAllFromGroup2Role"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_GROUP2ROLE  
+      ]]>
+   <groupname name="TBL_AA_GROUP2ROLE"/>
+ </map-sql> 
+ <map-sql
+  id="/iTrust-aa/migrate/deleteAllFromRole"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_ROLE  
+      ]]>
+   <groupname name="TBL_AA_ROLE"/>
+ </map-sql>  
+ 
+ <!-- drop old tables -->
+  <map-sql
+  id="/iTrust-aa/migrate/dropPermission2Resources"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_PERMISSION2RESOURCES 
+      ]]>
+   <groupname name="TBL_AA_PERMISSION2RESOURCES"/>
+ </map-sql>  
+ <map-sql
+  id="/iTrust-aa/migrate/dropRole2Permission"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_ROLE2PERMISSION 
+      ]]>
+   <groupname name="TBL_AA_ROLE2PERMISSION"/>
+ </map-sql> 
+ <map-sql
+  id="/iTrust-aa/migrate/dropPermission"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_PERMISSION 
+      ]]>
+   <groupname name="TBL_AA_PERMISSION"/>
+ </map-sql> 
+ <map-sql
+  id="/iTrust-aa/migrate/dropSubject2Role"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_SUBJECT2ROLE 
+      ]]>
+   <groupname name="TBL_AA_SUBJECT2ROLE"/>
+ </map-sql> 
+ <map-sql
+  id="/iTrust-aa/migrate/dropGroup2Role"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_GROUP2ROLE 
+      ]]>
+   <groupname name="TBL_AA_GROUP2ROLE"/>
+ </map-sql> 
+ <map-sql
+  id="/iTrust-aa/migrate/dropRole"
+  type="update" >
+ <![CDATA[
+   DELETE FROM TBL_AA_ROLE; 
+      ]]>
+   <groupname name="TBL_AA_ROLE;"/>
+ </map-sql> 
+</pfw-mapping>

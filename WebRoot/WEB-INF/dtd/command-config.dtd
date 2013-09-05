@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+
+<!ELEMENT param EMPTY>
+<!ATTLIST param name CDATA #REQUIRED>
+<!ATTLIST param type CDATA #REQUIRED>
+
+<!ELEMENT result EMPTY>
+<!ATTLIST result name CDATA #REQUIRED>
+<!ATTLIST result type CDATA #REQUIRED> 
+
+<!ELEMENT command (param*,result*)>
+
+<!ATTLIST command name CDATA #REQUIRED>
+
+<!ATTLIST command service CDATA #REQUIRED>
+
+<!ATTLIST command type CDATA #REQUIRED>
+
+<!ELEMENT command-config
+   (command-mappings,ejb-ref-mappings)
+>
+
+<!ELEMENT command-mappings (command+)>
+
+<!ELEMENT ejb-ref EMPTY>
+
+<!ATTLIST ejb-ref jndiName CDATA #REQUIRED>
+
+<!ATTLIST ejb-ref name CDATA #REQUIRED>
+
+<!ELEMENT ejb-ref-mappings (ejb-ref+)>

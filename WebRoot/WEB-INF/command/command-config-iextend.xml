@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<command-config>
+	<command-mappings>
+		<command name="/codelookup/getcodes" 
+		    type="com.ncs.iframe.extensions.tagutil.codelookup.CodeLookupCommand" 
+		    service="getCodes">
+		</command>
+		<command name="/codelookup/getcode" 
+		    type="com.ncs.iframe.extensions.tagutil.codelookup.CodeLookupCommand" 
+		    service="getCode">
+		</command>
+		<command name="/menu/getrepository" 
+		    type="com.ncs.iframe.extensions.menu.datasource.MenuCommand" 
+		    service="getRepository">
+		</command>
+	</command-mappings>
+
+</command-config>

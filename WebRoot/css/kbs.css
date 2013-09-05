@@ -1,0 +1,99 @@
+#foldheader1 {
+  cursor: pointer;
+  cursor: hand; 
+  font-weight: bold; 
+  list-style-image: url(/ikbs/image/folder_closed.gif);
+}
+
+#foldinglist1 {
+  list-style-image:url(/ikbs/image/document.gif);
+}
+
+.alphaMenu {
+  font-family: Tahoma;
+  font-size: 10pt;
+  font-weight: bold;
+  color: #000099;
+  text-decoration: none;
+}
+
+.alphaMenu:hover {
+  color: #FF0000;
+  text-decoration: underline;
+}
+
+.listParent {
+  font-family: Tahoma;
+  font-size: 9pt;
+  font-weight: bold;
+  color: #000099;
+  text-decoration: none;
+}
+
+.listParent:hover {
+  color: #FF0000;
+  text-decoration: underline;
+}
+
+.listChild {
+  font-family: Tahoma;
+  font-size: 9pt;
+  font-weight: normal;
+  color: #000099;
+  text-decoration: none;
+}
+
+.listChild:hover {
+  color: #FF0000;
+  text-decoration: underline;
+}
+
+.imageLink {
+  font-family: Tahoma;
+  font-size: 9pt;
+  font-weight: bold;
+  color: #994499;
+  text-decoration: underline;
+}
+
+.imageLink:hover {
+  color: #FF0000;
+  text-decoration: underline;
+}
+
+.tableHeader {
+  font-family: Tahoma;
+  font-size: 9pt;
+  font-weight: bold;
+  color: #000099;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid #DDDDFF;
+  padding-left: 3px;
+}
+
+.tableValue {
+  font-family: Tahoma;
+  font-size: 9pt;
+  font-weight: normal;
+  color: #000099;
+  text-decoration: none;
+  border: 1px solid #DDDDFF;
+  padding-left: 3px;
+}
+
+.pageText {
+  font-family: Tahoma;
+  font-size: 9pt;
+  font-weight: bold;
+  color: #000099;
+  text-decoration: none;
+}
+
+.formName {
+  font-family: Tahoma;
+  font-size: 9pt;
+  font-weight: normal;
+  color: #000099;
+  text-decoration: none;
+}
